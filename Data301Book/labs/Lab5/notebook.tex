@@ -1,0 +1,846 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{5B. Prediction Competiton}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \hypertarget{prediction-competition}{%
+\section{Prediction Competition}\label{prediction-competition}}
+
+The goal of machine learning is to build models with high predictive
+accuracy. Thus, it is not surprising that there exist machine learning
+competitions, where participants compete to build the model with the
+lowest possible prediction error.
+
+\href{http://www.kaggle.com/}{Kaggle} is a website that hosts machine
+learning competitions. In this lab, you will participate in a Kaggle
+competition with other students in this class! The top 5 people will
+earn up to 5 bonus points on this lab. To join the competition, visit
+\href{https://www.kaggle.com/c/beer2019}{this link}. You will need to
+create an account on Kaggle first.
+
+    \hypertarget{question}{%
+\section{Question}\label{question}}
+
+Train many different models to predict IBU. Try different subsets of
+variables. Try different machine learning algorithms (you are not
+restricted to just \(k\)-nearest neighbors). At least one of your models
+must contain variables derived from the \texttt{description} of each
+beer. Use cross-validation to systematically select good models and
+submit your predictions to Kaggle. You are allowed 2 submissions per
+day, so submit early and often!
+
+Note that to submit your predictions to Kaggle, you will need to export
+your predictions to a CSV file (using \texttt{.to\_csv()}) in the format
+expected by Kaggle (see \texttt{beer\_test\_sample\_submission.csv} for
+an example).
+
+    \hypertarget{discovery}{%
+\section{Discovery}\label{discovery}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}87}]:} \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}\PY{o}{,} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+         \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+         
+         \PY{n}{beer\PYZus{}df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{/data301/data/beer/beer\PYZus{}train.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{beer\PYZus{}df} \PY{o}{=} \PY{n}{beer\PYZus{}df}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{id}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}88}]:} \PY{n}{beer\PYZus{}df}\PY{o}{.}\PY{n}{description} \PY{o}{=} \PY{n}{beer\PYZus{}df}\PY{o}{.}\PY{n}{description}\PY{o}{.}\PY{n}{fillna}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{o}{.}\PY{n}{str}\PY{o}{.}\PY{n}{lower}\PY{p}{(}\PY{p}{)}
+         \PY{n}{beer\PYZus{}df}\PY{o}{.}\PY{n}{name} \PY{o}{=} \PY{n}{beer\PYZus{}df}\PY{o}{.}\PY{n}{name}\PY{o}{.}\PY{n}{fillna}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{o}{.}\PY{n}{str}\PY{o}{.}\PY{n}{lower}\PY{p}{(}\PY{p}{)}
+         \PY{n}{beer\PYZus{}df}\PY{o}{.}\PY{n}{srm} \PY{o}{=} \PY{n}{beer\PYZus{}df}\PY{o}{.}\PY{n}{srm}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Over 40}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+m+mi}{41}\PY{p}{)}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{int}\PY{p}{)}
+         \PY{n}{beer\PYZus{}df}\PY{o}{.}\PY{n}{available} \PY{o}{=} \PY{n}{beer\PYZus{}df}\PY{o}{.}\PY{n}{available}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{category}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{beer\PYZus{}df}\PY{o}{.}\PY{n}{glass} \PY{o}{=} \PY{n}{beer\PYZus{}df}\PY{o}{.}\PY{n}{glass}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{category}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{beer\PYZus{}df}\PY{o}{.}\PY{n}{isOrganic} \PY{o}{=} \PY{n}{beer\PYZus{}df}\PY{o}{.}\PY{n}{isOrganic}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{category}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{beer\PYZus{}df}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}88}]:}    abv                                        available  \textbackslash{}
+         0  8.2  Available at the same time of year, every year.   
+         1  5.7  Available at the same time of year, every year.   
+         2  5.8  Available at the same time of year, every year.   
+         3  5.5           Available year round as a staple beer.   
+         4  4.8           Available year round as a staple beer.   
+         
+                                                  description glass   ibu isOrganic  \textbackslash{}
+         0  a belgian-abbey-style tripel that is big in al{\ldots}   NaN  31.0         N   
+         1  covert hops is a crafty ale. its stealthy dark{\ldots}  Pint  45.0         N   
+         2  this is a traditional german-style marzen char{\ldots}   Mug  25.0         N   
+         3  a west coast-style pale ale balancing plenty o{\ldots}  Pint  55.0         N   
+         4  this bombshell has a tantalizing crisp and cle{\ldots}  Pint  11.4         N   
+         
+                              name  originalGravity  srm  
+         0         loonytoontripel            1.070    8  
+         1             covert hops            1.056   35  
+         2             oktoberfest            1.048   10  
+         3                pale ale            1.044    5  
+         4  head turner blonde ale            1.045    3  
+\end{Verbatim}
+            
+    My first step is my process was to clean all the features. For SRM, the
+number of ``Over 40'' observations was much greater than the number of
+observations with a value actually over 40, so I decided that I would
+simply replace them with a value of ``41'' since I couldn't really
+impute the values based on similar beers easily.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}89}]:} \PY{n}{beer\PYZus{}df}\PY{o}{.}\PY{n}{dtypes}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}89}]:} abv                 float64
+         available          category
+         description          object
+         glass              category
+         ibu                 float64
+         isOrganic          category
+         name                 object
+         originalGravity     float64
+         srm                   int64
+         dtype: object
+\end{Verbatim}
+            
+    Here we can see that all our type conversion were correct, and our data
+is mostly ready for training.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}90}]:} \PY{n}{beer\PYZus{}df} \PY{o}{=} \PY{n}{beer\PYZus{}df}\PY{p}{[}\PY{n}{beer\PYZus{}df}\PY{o}{.}\PY{n}{ibu} \PY{o}{\PYZlt{}}\PY{o}{=} 
+                           \PY{n}{beer\PYZus{}df}\PY{o}{.}\PY{n}{ibu}\PY{o}{.}\PY{n}{quantile}\PY{p}{(}\PY{o}{.}\PY{l+m+mi}{997}\PY{p}{)}\PY{p}{]}
+         \PY{n}{beer\PYZus{}df}\PY{o}{.}\PY{n}{ibu}\PY{o}{.}\PY{n}{plot}\PY{o}{.}\PY{n}{box}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}90}]:} <matplotlib.axes.\_subplots.AxesSubplot at 0x7f106ad99208>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_8_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    I wanted to take a look at the distribution of beer ibu's to see if it
+was close enough to normal or not. I discovered there were 1 or 2
+problematic outliers, therefore I kept all the data within the 99.7th
+percentile
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}91}]:} \PY{n}{beer\PYZus{}df}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}91}]:} array([[<matplotlib.axes.\_subplots.AxesSubplot object at 0x7f106ade8b70>,
+                 <matplotlib.axes.\_subplots.AxesSubplot object at 0x7f106aa5df28>],
+                [<matplotlib.axes.\_subplots.AxesSubplot object at 0x7f106aa095f8>,
+                 <matplotlib.axes.\_subplots.AxesSubplot object at 0x7f106aa2bc88>]], dtype=object)
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_10_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Here's histograms of our numerical data, and it appears that our
+features are some right skewed. We will transform them.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}92}]:} \PY{n}{beer\PYZus{}df}\PY{o}{.}\PY{n}{abv} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{log10}\PY{p}{(}\PY{n}{beer\PYZus{}df}\PY{o}{.}\PY{n}{abv}\PY{p}{)}
+         \PY{n}{beer\PYZus{}df}\PY{o}{.}\PY{n}{srm} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{log10}\PY{p}{(}\PY{n}{beer\PYZus{}df}\PY{o}{.}\PY{n}{srm}\PY{p}{)}
+         \PY{n}{beer\PYZus{}df}\PY{o}{.}\PY{n}{originalGravity} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{log10}\PY{p}{(}
+         \PY{n}{beer\PYZus{}df}\PY{o}{.}\PY{n}{originalGravity}\PY{p}{)}
+         \PY{n}{beer\PYZus{}df}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}92}]:} array([[<matplotlib.axes.\_subplots.AxesSubplot object at 0x7f106b07cef0>,
+                 <matplotlib.axes.\_subplots.AxesSubplot object at 0x7f106bc72b70>],
+                [<matplotlib.axes.\_subplots.AxesSubplot object at 0x7f106a8ad240>,
+                 <matplotlib.axes.\_subplots.AxesSubplot object at 0x7f106a8508d0>]], dtype=object)
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_12_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    I observed that log transforming our data helped make it more normally
+distributed, and that should help slightly when training our model.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}93}]:} \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{feature\PYZus{}extraction} \PY{k}{import} \PY{n}{DictVectorizer}
+         \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{preprocessing} \PY{k}{import} \PY{n}{RobustScaler}
+         \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{neighbors} \PY{k}{import} \PY{n}{KNeighborsRegressor}
+         \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{pipeline} \PY{k}{import} \PY{n}{Pipeline}
+         
+         \PY{n}{X\PYZus{}dict} \PY{o}{=} \PY{p}{(}\PY{n}{beer\PYZus{}df}\PY{p}{[}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{abv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{available}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} 
+                           \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{originalGravity}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{srm}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{]}
+                   \PY{o}{.}\PY{n}{to\PYZus{}dict}\PY{p}{(}\PY{n}{orient}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{records}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+         \PY{n}{y} \PY{o}{=} \PY{n}{beer\PYZus{}df}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ibu}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}
+         \PY{n}{vec} \PY{o}{=} \PY{n}{DictVectorizer}\PY{p}{(}\PY{n}{sparse}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+         \PY{n}{scaler} \PY{o}{=} \PY{n}{RobustScaler}\PY{p}{(}\PY{p}{)}
+         \PY{n}{model} \PY{o}{=} \PY{n}{KNeighborsRegressor}\PY{p}{(}\PY{n}{n\PYZus{}neighbors}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}
+         \PY{n}{pipeline} \PY{o}{=} \PY{n}{Pipeline}\PY{p}{(}\PY{p}{[}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{vectorizer}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{vec}\PY{p}{)}\PY{p}{,} 
+                              \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{scaler}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{scaler}\PY{p}{)}\PY{p}{,} 
+                              \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{fit}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{model}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}94}]:} \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{model\PYZus{}selection} \PY{k}{import} \PY{n}{cross\PYZus{}val\PYZus{}score} 
+         \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{model\PYZus{}selection} \PY{k}{import} \PY{n}{train\PYZus{}test\PYZus{}split}\PY{p}{,} \PY{n}{KFold}
+         \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{metrics} \PY{k}{import} \PY{n}{mean\PYZus{}squared\PYZus{}error}
+         \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{metrics}\PY{n+nn}{.}\PY{n+nn}{scorer} \PY{k}{import} \PY{n}{make\PYZus{}scorer}
+         
+         \PY{k}{def} \PY{n+nf}{true\PYZus{}rmse}\PY{p}{(}\PY{n}{y\PYZus{}true}\PY{p}{,} \PY{n}{y\PYZus{}pred}\PY{p}{)}\PY{p}{:}
+             \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{mean\PYZus{}squared\PYZus{}error}\PY{p}{(}\PY{n}{y\PYZus{}true}\PY{p}{,} \PY{n}{y\PYZus{}pred}\PY{p}{)}\PY{p}{)}
+         \PY{n}{my\PYZus{}rmse} \PY{o}{=} \PY{n}{make\PYZus{}scorer}\PY{p}{(}\PY{n}{true\PYZus{}rmse}\PY{p}{,} \PY{n}{greater\PYZus{}is\PYZus{}better}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+         
+         \PY{n}{kf} \PY{o}{=} \PY{n}{KFold}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{shuffle}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{random\PYZus{}state}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{)}\PY{o}{.}\PY{n}{get\PYZus{}n\PYZus{}splits}\PY{p}{(}\PY{n}{X\PYZus{}dict}\PY{p}{)}
+         \PY{n}{scores} \PY{o}{=} \PY{n}{cross\PYZus{}val\PYZus{}score}\PY{p}{(}\PY{n}{pipeline}\PY{p}{,} \PY{n}{X\PYZus{}dict}\PY{p}{,} \PY{n}{y}\PY{p}{,} 
+                                  \PY{n}{cv}\PY{o}{=}\PY{n}{kf}\PY{p}{,} \PY{n}{scoring}\PY{o}{=}\PY{n}{my\PYZus{}rmse}\PY{p}{)}
+         \PY{n}{scores}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}94}]:} 17.914969314662962
+\end{Verbatim}
+            
+    I went with a basic approach with KNearest on only a few features at
+first in order to get a baseline, later we will use more complex
+modelling.
+
+    \hypertarget{extracting-features-and-more}{%
+\subsubsection{Extracting Features and
+More}\label{extracting-features-and-more}}
+
+    I needed to extract key information from the textual data given to us,
+and so I decided to use the TFIDF method, while also removing stop words
+present in the corpus of beer text
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}95}]:} \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{model\PYZus{}selection} \PY{k}{import} \PY{n}{train\PYZus{}test\PYZus{}split}\PY{p}{,} \PY{n}{GridSearchCV}
+         
+         \PY{n}{X} \PY{o}{=} \PY{n}{beer\PYZus{}df}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ibu}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n}{y} \PY{o}{=} \PY{n}{beer\PYZus{}df}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ibu}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}
+         \PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{X\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}test} \PY{o}{=} \PY{p}{(}
+             \PY{n}{train\PYZus{}test\PYZus{}split}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{test\PYZus{}size}\PY{o}{=}\PY{o}{.}\PY{l+m+mi}{05}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}96}]:} \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{base} \PY{k}{import} \PY{n}{TransformerMixin}
+         \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{base} \PY{k}{import} \PY{n}{BaseEstimator}
+         \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{base} \PY{k}{import} \PY{n}{RegressorMixin}\PY{p}{,} \PY{n}{clone}
+         
+         \PY{k}{class} \PY{n+nc}{ColSelector}\PY{p}{(}\PY{n}{BaseEstimator}\PY{p}{,} \PY{n}{TransformerMixin}\PY{p}{)}\PY{p}{:}
+             \PY{k}{def} \PY{n+nf}{\PYZus{}\PYZus{}init\PYZus{}\PYZus{}}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{cols}\PY{p}{)}\PY{p}{:}
+                 \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cols} \PY{o}{=} \PY{n}{cols}
+         
+             \PY{k}{def} \PY{n+nf}{fit}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{X}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{k+kc}{None}\PY{p}{)}\PY{p}{:}
+                 \PY{k}{return} \PY{n+nb+bp}{self}
+         
+             \PY{k}{def} \PY{n+nf}{transform}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{X}\PY{p}{)}\PY{p}{:}
+                 \PY{k}{return} \PY{n}{X}\PY{p}{[}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cols}\PY{p}{]}
+         
+         \PY{k}{class} \PY{n+nc}{Converter}\PY{p}{(}\PY{n}{BaseEstimator}\PY{p}{,} \PY{n}{TransformerMixin}\PY{p}{)}\PY{p}{:}
+             \PY{k}{def} \PY{n+nf}{fit}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{k+kc}{None}\PY{p}{)}\PY{p}{:}
+                 \PY{k}{return} \PY{n+nb+bp}{self}
+         
+             \PY{k}{def} \PY{n+nf}{transform}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{data\PYZus{}frame}\PY{p}{)}\PY{p}{:}
+                 \PY{k}{return} \PY{n}{data\PYZus{}frame}\PY{o}{.}\PY{n}{values}\PY{o}{.}\PY{n}{ravel}\PY{p}{(}\PY{p}{)}
+             
+         \PY{k}{class} \PY{n+nc}{StringIndexer}\PY{p}{(}\PY{n}{BaseEstimator}\PY{p}{,} \PY{n}{TransformerMixin}\PY{p}{)}\PY{p}{:}
+             \PY{k}{def} \PY{n+nf}{fit}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{X}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{k+kc}{None}\PY{p}{)}\PY{p}{:}
+                 \PY{k}{return} \PY{n+nb+bp}{self}
+             \PY{k}{def} \PY{n+nf}{transform}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{X}\PY{p}{)}\PY{p}{:}
+                 \PY{k}{return} \PY{n}{X}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{k}{lambda} \PY{n}{s}\PY{p}{:} \PY{n}{s}\PY{o}{.}\PY{n}{cat}\PY{o}{.}\PY{n}{codes}\PY{o}{.}\PY{n}{replace}\PY{p}{(}
+                     \PY{p}{\PYZob{}}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{:} \PY{n+nb}{len}\PY{p}{(}\PY{n}{s}\PY{o}{.}\PY{n}{cat}\PY{o}{.}\PY{n}{categories}\PY{p}{)}\PY{p}{\PYZcb{}}
+         \PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    I also needed a way to use complex scikit-learn pipelines with pandas,
+and it proved to be somewhat difficult at first (without
+ColumnTransformer, which my version of sklearn did not have). I
+eventually was able to get it to handle all my data, with a few methods:
+ColSelector, Converter, and StringIndexer.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}107}]:} \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{pipeline} \PY{k}{import} \PY{n}{Pipeline}\PY{p}{,} \PY{n}{FeatureUnion}
+          \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{feature\PYZus{}extraction}\PY{n+nn}{.}\PY{n+nn}{text} \PY{k}{import} \PY{n}{TfidfVectorizer}
+          \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{preprocessing} \PY{k}{import} \PY{n}{RobustScaler}\PY{p}{,} \PY{n}{OneHotEncoder}
+          \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{ensemble} \PY{k}{import} \PY{n}{GradientBoostingRegressor}
+          
+          \PY{n}{full\PYZus{}pipe} \PY{o}{=} \PY{n}{Pipeline}\PY{p}{(}\PY{p}{[}
+              \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{selector}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{ColSelector}\PY{p}{(}\PY{n}{cols}\PY{o}{=}\PY{n}{X}\PY{o}{.}\PY{n}{columns}\PY{o}{.}\PY{n}{values}\PY{p}{)}\PY{p}{)}\PY{p}{,}
+              \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{features}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{FeatureUnion}\PY{p}{(}\PY{n}{transformer\PYZus{}list}\PY{o}{=}\PY{p}{[}
+                  \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{categorical\PYZus{}pipe}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{Pipeline}\PY{p}{(}\PY{p}{[}
+                      \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{selector}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{ColSelector}\PY{p}{(}\PY{n}{cols}\PY{o}{=}\PY{p}{[}
+                          \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{available}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+                          \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{glass}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+                          \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{isOrganic}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{,}
+                      \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{indexer}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{StringIndexer}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{,}
+                      \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{encoder}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{OneHotEncoder}\PY{p}{(}
+                          \PY{n}{handle\PYZus{}unknown}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ignore}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+                  \PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{,}
+                  \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{numeric\PYZus{}pipe}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{Pipeline}\PY{p}{(}\PY{p}{[}
+                      \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{selector}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{ColSelector}\PY{p}{(}\PY{n}{cols}\PY{o}{=}\PY{p}{[}
+                          \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{abv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+                          \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{originalGravity}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+                          \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{srm}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{,}
+                      \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{scaler}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{RobustScaler}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{,}
+                  \PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{,}
+                  \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{name\PYZus{}pipe}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{Pipeline}\PY{p}{(}\PY{p}{[}
+                      \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{selector}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{ColSelector}\PY{p}{(}\PY{n}{cols}\PY{o}{=}\PY{p}{[}
+                          \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{name}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{,}
+                      \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{converter}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{Converter}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{,}
+                      \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{vectorizer}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{TfidfVectorizer}\PY{p}{(}
+                          \PY{n}{stop\PYZus{}words}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{english}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+                  \PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{,}
+                  \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{description\PYZus{}pipe}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{Pipeline}\PY{p}{(}\PY{p}{[}
+                      \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{selector}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{ColSelector}\PY{p}{(}\PY{n}{cols}\PY{o}{=}\PY{p}{[}
+                          \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{description}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{,}
+                      \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{converter}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{Converter}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{,}
+                      \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{vectorizer}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{TfidfVectorizer}\PY{p}{(}
+                          \PY{n}{stop\PYZus{}words}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{english}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                          \PY{n}{sublinear\PYZus{}tf}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}\PY{p}{)}
+                  \PY{p}{]}\PY{p}{)}\PY{p}{)}
+              \PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{,}
+              \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{regressor}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{GradientBoostingRegressor}\PY{p}{(}
+                  \PY{n}{random\PYZus{}state}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}
+          \PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    From my testing, I decided to go with an already implemented ensemble
+method, GradientBoostingRegressor. I tried implementing my own stacked
+model with many linear and non-linear models, but this turned out to be
+only slightly better but took ages to train. I also tried keras with a
+deep(ish) neural network, and it proved better than most linear sklearn
+models, but not as good as sklearn ensemble methods (RandomForest,
+GradientBoost, etc).
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}98}]:} \PY{n}{pg} \PY{o}{=} \PY{p}{\PYZob{}}
+             \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{features\PYZus{}\PYZus{}name\PYZus{}pipe\PYZus{}\PYZus{}vectorizer\PYZus{}\PYZus{}norm}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{l2}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,}
+             \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{features\PYZus{}\PYZus{}name\PYZus{}pipe\PYZus{}\PYZus{}vectorizer\PYZus{}\PYZus{}ngram\PYZus{}range}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{p}{[}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{]}\PY{p}{,}
+             \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{features\PYZus{}\PYZus{}name\PYZus{}pipe\PYZus{}\PYZus{}vectorizer\PYZus{}\PYZus{}sublinear\PYZus{}tf}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{p}{[}\PY{k+kc}{True}\PY{p}{]}\PY{p}{,}
+             \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{features\PYZus{}\PYZus{}description\PYZus{}pipe\PYZus{}\PYZus{}vectorizer\PYZus{}\PYZus{}norm}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{l2}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,}
+             \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{features\PYZus{}\PYZus{}description\PYZus{}pipe\PYZus{}\PYZus{}vectorizer\PYZus{}\PYZus{}ngram\PYZus{}range}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{p}{[}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{]}\PY{p}{,}
+             \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{regressor\PYZus{}\PYZus{}n\PYZus{}estimators}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mi}{500}\PY{p}{]}\PY{p}{,}
+             \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{regressor\PYZus{}\PYZus{}min\PYZus{}samples\PYZus{}leaf}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mi}{5}\PY{p}{]}\PY{p}{,}
+             \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{regressor\PYZus{}\PYZus{}loss}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{huber}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}
+         \PY{p}{\PYZcb{}}
+         
+         \PY{n}{regression\PYZus{}model} \PY{o}{=} \PY{n}{GridSearchCV}\PY{p}{(}\PY{n}{full\PYZus{}pipe}\PY{p}{,} \PY{n}{pg}\PY{p}{,} \PY{n}{cv}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{scoring}\PY{o}{=}\PY{n}{my\PYZus{}rmse}\PY{p}{)}
+         \PY{n}{regression\PYZus{}model}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{)}
+         \PY{n}{regression\PYZus{}model}\PY{o}{.}\PY{n}{best\PYZus{}params\PYZus{}}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}98}]:} \{'features\_\_description\_pipe\_\_vectorizer\_\_ngram\_range': (1, 1),
+          'features\_\_description\_pipe\_\_vectorizer\_\_norm': 'l2',
+          'features\_\_name\_pipe\_\_vectorizer\_\_ngram\_range': (1, 1),
+          'features\_\_name\_pipe\_\_vectorizer\_\_norm': 'l2',
+          'features\_\_name\_pipe\_\_vectorizer\_\_sublinear\_tf': True,
+          'regressor\_\_loss': 'huber',
+          'regressor\_\_min\_samples\_leaf': 5,
+          'regressor\_\_n\_estimators': 500\}
+\end{Verbatim}
+            
+    From gridsearching, I was able to compare many different parameters to
+see which gave me the best performance and score.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}99}]:} \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Mean CV Score:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{regression\PYZus{}model}\PY{o}{.}\PY{n}{cv\PYZus{}results\PYZus{}}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mean\PYZus{}test\PYZus{}score}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)} \PY{c+c1}{\PYZsh{} 14.2}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Test Score:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{regression\PYZus{}model}\PY{o}{.}\PY{n}{score}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}test}\PY{p}{)}\PY{p}{)}\PY{c+c1}{\PYZsh{} 13.2}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Mean CV Score: 14.3413110374
+Test Score: 13.6237123243
+
+    \end{Verbatim}
+
+    An improvement of around 2-3 points from KNearest is what we were
+looking for, and that is what we got!
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}109}]:} \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{metrics} \PY{k}{import} \PY{n}{r2\PYZus{}score}
+          \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+          
+          \PY{n}{y\PYZus{}pred} \PY{o}{=} \PY{n}{regression\PYZus{}model}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{p}{)}
+          \PY{p}{(}\PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{\PYZob{}}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Actual}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{y\PYZus{}test}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Predicted}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{y\PYZus{}pred}\PY{p}{\PYZcb{}}\PY{p}{)}
+              \PY{o}{.}\PY{n}{plot}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Actual}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Predicted}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{l+m+mi}{15}\PY{p}{,} \PY{n}{s}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdl{}R\PYZca{}2\PYZdl{} = }\PY{l+s+si}{\PYZob{}:3.2f\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{r2\PYZus{}score}\PY{p}{(}\PY{n}{y\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}pred}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+        ---------------------------------------------------------------------------
+
+        ValueError                                Traceback (most recent call last)
+
+        <ipython-input-109-9556c0dacad4> in <module>
+          3 
+          4 y\_pred = regression\_model.predict(X\_test)
+    ----> 5 (pd.DataFrame(\{"Actual": y\_test, "Predicted": y\_pred\})
+          6     .plot.scatter(x="Actual", y="Predicted"))
+          7 plt.text(x=100, y=15, s="\$R\^{}2\$ = \{:3.2f\}".format(r2\_score(y\_test, y\_pred)))
+
+
+        /opt/conda/lib/python3.6/site-packages/pandas/core/frame.py in \_\_init\_\_(self, data, index, columns, dtype, copy)
+        346                                  dtype=dtype, copy=copy)
+        347         elif isinstance(data, dict):
+    --> 348             mgr = self.\_init\_dict(data, index, columns, dtype=dtype)
+        349         elif isinstance(data, ma.MaskedArray):
+        350             import numpy.ma.mrecords as mrecords
+
+
+        /opt/conda/lib/python3.6/site-packages/pandas/core/frame.py in \_init\_dict(self, data, index, columns, dtype)
+        457             arrays = [data[k] for k in keys]
+        458 
+    --> 459         return \_arrays\_to\_mgr(arrays, data\_names, index, columns, dtype=dtype)
+        460 
+        461     def \_init\_ndarray(self, values, index, columns, dtype=None, copy=False):
+
+
+        /opt/conda/lib/python3.6/site-packages/pandas/core/frame.py in \_arrays\_to\_mgr(arrays, arr\_names, index, columns, dtype)
+       7354     \# figure out the index, if necessary
+       7355     if index is None:
+    -> 7356         index = extract\_index(arrays)
+       7357 
+       7358     \# don't force copy because getting jammed in an ndarray anyway
+
+
+        /opt/conda/lib/python3.6/site-packages/pandas/core/frame.py in extract\_index(data)
+       7410                     msg = ('array length \%d does not match index length \%d' \%
+       7411                            (lengths[0], len(index)))
+    -> 7412                     raise ValueError(msg)
+       7413             else:
+       7414                 index = com.\_default\_index(lengths[0])
+
+
+        ValueError: array length 4753 does not match index length 300
+
+    \end{Verbatim}
+
+    A scatterplot of our predictions versus their true values will give us
+view of how well our predictions were correlated with their true values.
+We would ideally want a strong relationship (high r2), but it is
+difficult to achieve that for our problem. We see that our model does
+pretty well for beers on the lower ibu spectrum, but then doesn't do so
+well on predicting beers with ibus greater than around 60.
+
+    \hypertarget{prediction}{%
+\section{Prediction}\label{prediction}}
+
+    For prediction on our test data, we will do everything we did for our
+training data the same, except we \textbf{can't} train on it, only
+predict. We will also apply the same transformations on the numerical
+features on the test data as we did on the training data.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}101}]:} \PY{n}{test\PYZus{}df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{/data301/data/beer/beer\PYZus{}test.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{test\PYZus{}ids} \PY{o}{=} \PY{n}{test\PYZus{}df}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{id}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}
+          \PY{n}{test\PYZus{}df} \PY{o}{=} \PY{n}{test\PYZus{}df}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{id}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}102}]:} \PY{n}{test\PYZus{}df}\PY{o}{.}\PY{n}{description} \PY{o}{=} \PY{n}{test\PYZus{}df}\PY{o}{.}\PY{n}{description}\PY{o}{.}\PY{n}{fillna}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{o}{.}\PY{n}{str}\PY{o}{.}\PY{n}{lower}\PY{p}{(}\PY{p}{)}
+          \PY{n}{test\PYZus{}df}\PY{o}{.}\PY{n}{name} \PY{o}{=} \PY{n}{test\PYZus{}df}\PY{o}{.}\PY{n}{name}\PY{o}{.}\PY{n}{fillna}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{o}{.}\PY{n}{str}\PY{o}{.}\PY{n}{lower}\PY{p}{(}\PY{p}{)}
+          \PY{n}{test\PYZus{}df}\PY{o}{.}\PY{n}{srm} \PY{o}{=} \PY{n}{test\PYZus{}df}\PY{o}{.}\PY{n}{srm}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Over 40}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+m+mi}{41}\PY{p}{)}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{float}\PY{p}{)}
+          \PY{n}{test\PYZus{}df}\PY{o}{.}\PY{n}{available} \PY{o}{=} \PY{n}{test\PYZus{}df}\PY{o}{.}\PY{n}{available}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{category}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{test\PYZus{}df}\PY{o}{.}\PY{n}{glass} \PY{o}{=} \PY{n}{test\PYZus{}df}\PY{o}{.}\PY{n}{glass}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{category}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{test\PYZus{}df}\PY{o}{.}\PY{n}{isOrganic} \PY{o}{=} \PY{n}{test\PYZus{}df}\PY{o}{.}\PY{n}{isOrganic}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{category}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{test\PYZus{}df}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}102}]:}     abv                               available  \textbackslash{}
+          0  10.0                   Limited availability.   
+          1   5.2  Available year round as a staple beer.   
+          2   4.0     Available during the winter months.   
+          3  10.2  Available year round as a staple beer.   
+          4   6.0                   Limited availability.   
+          
+                                                   description  glass  ibu isOrganic  \textbackslash{}
+          0  a classic belgian trappist style strong ale wi{\ldots}  Tulip  NaN         N   
+          1  an american-style of pale ale brewed with a ba{\ldots}   Pint  NaN         N   
+          2  this amber wheat ale has a balanced malt body,{\ldots}  Tulip  NaN         Y   
+          3  a uniquely large beer developed by taking our {\ldots}   Pint  NaN         N   
+          4         an american red ale with crisp hop flavor.    NaN  NaN         N   
+          
+                                     name  originalGravity   srm  
+          0                     she will!            1.084  17.0  
+          1    defender american pale ale            1.044  22.0  
+          2                         hazel            1.036  19.0  
+          3  cinderella’s twin double ipa            1.087  11.0  
+          4              independence ale            1.048  14.0  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}103}]:} \PY{n}{test\PYZus{}df}\PY{o}{.}\PY{n}{dtypes}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}103}]:} abv                 float64
+          available          category
+          description          object
+          glass              category
+          ibu                 float64
+          isOrganic          category
+          name                 object
+          originalGravity     float64
+          srm                 float64
+          dtype: object
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}105}]:} \PY{n}{X\PYZus{}test} \PY{o}{=} \PY{n}{test\PYZus{}df}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ibu}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+          \PY{n}{y\PYZus{}pred} \PY{o}{=} \PY{n}{regression\PYZus{}model}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}106}]:} \PY{n}{pred\PYZus{}df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{test\PYZus{}ids}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ibu}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{y\PYZus{}pred}\PY{p}{\PYZcb{}}\PY{p}{)}
+          \PY{n}{pred\PYZus{}df} \PY{o}{=} \PY{n}{pred\PYZus{}df}\PY{o}{.}\PY{n}{set\PYZus{}index}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{id}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{pred\PYZus{}df}\PY{o}{.}\PY{n}{to\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{full\PYZus{}pred.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \hypertarget{submission-instructions}{%
+\section{Submission Instructions}\label{submission-instructions}}
+
+Once you are finished, follow these steps:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Restart the kernel and re-run this notebook from beginning to end by
+  going to
+  \texttt{Kernel\ \textgreater{}\ Restart\ Kernel\ and\ Run\ All\ Cells}.
+\item
+  If this process stops halfway through, that means there was an error.
+  Correct the error and repeat Step 1 until the notebook runs from
+  beginning to end.
+\item
+  Double check that there is a number next to each code cell and that
+  these numbers are in order.
+\end{enumerate}
+
+Then, submit your lab as follows:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Go to
+  \texttt{File\ \textgreater{}\ Export\ Notebook\ As\ \textgreater{}\ PDF}.
+\item
+  Double check that the entire notebook, from beginning to end, is in
+  this PDF file. (If the notebook is cut off, try first exporting the
+  notebook to HTML and printing to PDF.)
+\item
+  Upload the PDF
+  \href{https://polylearn.calpoly.edu/AY_2018-2019/mod/assign/view.php?id=325688}{to
+  PolyLearn}.
+\end{enumerate}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}

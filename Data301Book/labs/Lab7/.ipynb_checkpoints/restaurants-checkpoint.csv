@@ -1,0 +1,121 @@
+res_id,name,cuisine,address,locality,city,city_id,latitude,longitude,zipcode,country_id,locality_verbose,aggregate_rating,rating_text,rating_color,votes
+16735363,Joy Yee's Noodles,Chinese,521 Davis Street 60201,Evanston,Chicago,292,42.0460805556,-87.6790305556,60201,216,"Evanston, Chicago",4.5,Excellent,3F7E00,161
+16749821,Yu's Mandarin Restaurant,Chinese,200 E Golf Road 60173,Schaumburg,Chicago,292,42.0507,-88.0742638889,60173,216,"Schaumburg, Chicago",4.5,Excellent,3F7E00,158
+16743712,Chi Tung Restaurant,Chinese,"9560 S. Kedzie Avenue, Evergreen Park 60805",Evergreen Park,Chicago,292,41.7197,-87.702,60805,216,"Evergreen Park, Chicago",4.5,Excellent,3F7E00,115
+16747211,Chinese Kitchen,Chinese,"1003 W. Ogden Avenue, Suite B, Naperville 60563",Naperville,Chicago,292,41.7848777778,-88.1680916667,60563,216,"Naperville, Chicago",4.4,Very Good,5BA829,31
+16751533,Tsing Tao Mandarin Chinese,Chinese,"537 Green Bay Road, Wilmette 60091",Wilmette,Chicago,292,42.0748055556,-87.7077638889,60091,216,"Wilmette, Chicago",4.4,Very Good,5BA829,22
+16739059,Tom Lee's Chop Suey,Chinese,"4660 N. Western Avenue, Chicago 60625",Lincoln Square,Chicago,292,41.966506,-87.688829,60625,216,"Lincoln Square, Chicago",4.4,Very Good,5BA829,19
+16732398,Big Bowl,Chinese,60 East Ohio Street 60611,River North,Chicago,292,41.89259,-87.62617,60611,216,"River North, Chicago",4.3,Very Good,5BA829,175
+16735772,Lao Sze Chuan,Chinese,2172 S Archer Avenue 60616,Chinatown,Chicago,292,41.8534138889,-87.6351861111,60616,216,"Chinatown, Chicago",4.3,Very Good,5BA829,208
+16739135,Triple Crown Restaurant,Chinese,2217 South Wentworth Avenue 60616,Chinatown,Chicago,292,41.85218,-87.6319,60616,216,"Chinatown, Chicago",4.3,Very Good,5BA829,73
+16735362,Joy Yee's Noodles,Chinese,"1335 S Halsted Street, Chicago 60607",University Village,Chicago,292,41.864407,-87.646816,60607,216,"University Village, Chicago",4.3,Very Good,5BA829,82
+16748673,Heng Wing,Chinese,"121 W. Palatine Road, Palatine 60067",Palatine,Chicago,292,42.1101083333,-88.0470972222,60067,216,"Palatine, Chicago",4.3,Very Good,5BA829,59
+16748500,P.F. Chang's,Chinese,14135 La Grange Road. 60462,Orland Park,Chicago,292,41.6328156552,-87.8532457352,60462,216,"Orland Park, Chicago",4.3,Very Good,5BA829,49
+16734446,Fung's Chop Suey,Chinese,"1400 E 47th Street, Suite I, Chicago 60653",Kenwood,Chicago,292,41.8098638889,-87.5921027778,60653,216,"Kenwood, Chicago",4.3,Very Good,5BA829,14
+16735364,Joy Yee's Noodles,Chinese,"2139 S China Place, Chicago 60616",Chinatown,Chicago,292,41.8540583333,-87.6337805556,60616,216,"Chinatown, Chicago",4.2,Very Good,5BA829,169
+16739504,Wow Bao,Chinese,835 North Michigan Avenue 60611,"Water Tower Place, Magnificent Mile",Chicago,292,41.89587,-87.62598,60611,216,"Water Tower Place, Magnificent Mile, Chicago",4.2,Very Good,5BA829,117
+16737247,Phoenix,Chinese,2131 S Archer Avenue 60616,Chinatown,Chicago,292,41.8537472222,-87.6331333333,60616,216,"Chinatown, Chicago",4.2,Very Good,5BA829,132
+16749706,P.F. Chang's,Chinese,5 Woodfield Mall Spc D313 60173,"Woodfield Mall, Schaumburg",Chicago,292,42.0453548764,-88.0366417766,60173,216,"Woodfield Mall, Schaumburg, Chicago",4.2,Very Good,5BA829,49
+16752738,Chef Ping,Chinese,"1755 Algonquin Road, Rolling Meadows 60008",Rolling Meadows,Chicago,292,42.0559666667,-88.0012805556,60008,216,"Rolling Meadows, Chicago",4.2,Very Good,5BA829,38
+16740920,T L's Four Seasons Chinese,Chinese,110 W. Bartlett Avenue 60103,Bartlett,Chicago,292,41.992333,-88.184289,60103,216,"Bartlett, Chicago",4.2,Very Good,5BA829,43
+16745016,Jade Dragon Restaurant,Chinese,"43 S. Washington Street, Hinsdale, Chicago 60521",Hinsdale,Chicago,292,41.8020694444,-87.9293361111,60521,216,"Hinsdale, Chicago",4.2,Very Good,5BA829,26
+16739754,The Original Big 4's Chop Suey,Chinese,"5411 S. Harlem Avenue, Chicago 60638",Garfield Ridge,Chicago,292,41.7935611111,-87.8014305556,60638,216,"Garfield Ridge, Chicago",4.2,Very Good,5BA829,11
+16745645,Moy Goy Inn,Chinese,"719 W Hillgrove Avenue, La Grange 60525",La Grange,Chicago,292,41.8146,-87.8784,60525,216,"La Grange, Chicago",4.2,Very Good,5BA829,14
+16750481,Chen's,Chinese,"17855 80th Avenue, Tinley Park 60477",Tinley Park,Chicago,292,41.5668,-87.8123,60477,216,"Tinley Park, Chicago",4.2,Very Good,5BA829,15
+16738609,Sun Wah Bar-B-Q Restaurant,Chinese,5039 N Broadway Street 60640,Uptown,Chicago,292,41.973903,-87.659565,60640,216,"Uptown, Chicago",4.1,Very Good,5BA829,117
+16753901,MingHin Cuisine,Chinese,"2168 S Archer Avenue, Chicago 60616",Chinatown,Chicago,292,41.8535194444,-87.6349722222,60616,216,"Chinatown, Chicago",4.1,Very Good,5BA829,71
+16734434,Friendship Chinese Restaurant,Chinese,2830 N Milwaukee Avenue 60618,Logan Square,Chicago,292,41.932691,-87.713308,60618,216,"Logan Square, Chicago",4.1,Very Good,5BA829,67
+16737010,P.F. Chang's,Chinese,530 North Wabash Avenue. 60611,River North,Chicago,292,41.8919052751,-87.6269987226,60611,216,"River North, Chicago",4.1,Very Good,5BA829,80
+16747299,Joy Yee's Noodles,Chinese,1163 E. Ogden Avenue 60563,Naperville,Chicago,292,41.7950583333,-88.1263583333,60563,216,"Naperville, Chicago",4.1,Very Good,5BA829,73
+16739008,Three Happiness,Chinese,"209 W. Cermak Road, Chicago 60616",Chinatown,Chicago,292,41.8528472222,-87.6324222222,60616,216,"Chinatown, Chicago",4.1,Very Good,5BA829,74
+16740482,Sun Shui Restaurant,Chinese,"155 W. Rand Road, Arlington Heights, Chicago 60004",Arlington Heights,Chicago,292,42.1154166667,-87.9849166667,60004,216,"Arlington Heights, Chicago",4.1,Very Good,5BA829,44
+16743114,Lao Sze Chuan,Chinese,"1331 W. Ogden Avenue, Downers Grove 60515",Downers Grove,Chicago,292,41.8080361111,-88.0191277778,60515,216,"Downers Grove, Chicago",4.1,Very Good,5BA829,41
+16734178,Emperor's Choice,Chinese,"2238 S Wentworth Avenue, Chicago 60616",Chinatown,Chicago,292,41.8517638889,-87.6318888889,60616,216,"Chinatown, Chicago",4.1,Very Good,5BA829,36
+16739525,Yen's,Chinese,"2856 N. Clark Street, Chicago 60657",Lakeview,Chicago,292,41.9342833333,-87.64595,60657,216,"Lakeview, Chicago",4.1,Very Good,5BA829,34
+16743096,Gong Ho Restaurant,Chinese,"1338 75th Street, Downers Grove 60516",Downers Grove,Chicago,292,41.7512,-88.016,60516,216,"Downers Grove, Chicago",4.1,Very Good,5BA829,23
+16750921,Ming Toy Restaurant,Chinese,"3139 N Lewis Avenue, Waukegan 60087",Waukegan,Chicago,292,42.409,-87.8548,60087,216,"Waukegan, Chicago",4.1,Very Good,5BA829,24
+16748840,Hong Min Restaurant,Chinese,"8048 W 111th Street, Palos Hills 60465",Palos Hills,Chicago,292,41.6896,-87.8182,60465,216,"Palos Hills, Chicago",4.1,Very Good,5BA829,21
+16749252,Absolutely Chinese Restaurant,Chinese,2140 Plum Grove Road 60008,Schaumburg,Chicago,292,42.0877222222,-88.0430916667,60008,216,"Schaumburg, Chicago",4.1,Very Good,5BA829,18
+16749422,Noodles Delight,Chinese,"853 E. Nerge Road, Roselle 60172",Roselle,Chicago,292,41.9979638889,-88.0586083333,60172,216,"Roselle, Chicago",4.1,Very Good,5BA829,19
+16746142,Lucky Wok Chinese Restaurant,Chinese,"6452 College Road, Naperville 60532",Naperville,Chicago,292,41.768125,-88.0993111111,60532,216,"Naperville, Chicago",4.1,Very Good,5BA829,14
+16752586,Joy Teriyaki,Chinese,"199 E Army Trail Road, Glendale Heights 60139",Glendale Heights,Chicago,292,41.936924,-88.080868,60139,216,"Glendale Heights, Chicago",4.1,Very Good,5BA829,11
+16737207,Pequod's Pizza,Italian,2207 N Clybourn Avenue 60614,Lincoln Park,Chicago,292,41.92175,-87.6646583333,60614,216,"Lincoln Park, Chicago",4.9,Excellent,3F7E00,458
+16737455,Portillo's Hot Dogs,Italian,100 West. Ontario 60610,River North,Chicago,292,41.8934295,-87.6314147,60610,216,"River North, Chicago",4.9,Excellent,3F7E00,1023
+16733182,Chicago Pizza & Oven Grinder Company,Italian,2121 N Clark Street 60614,Lincoln Park,Chicago,292,41.920712,-87.637309,60614,216,"Lincoln Park, Chicago",4.9,Excellent,3F7E00,439
+16747376,Portillo's Hot Dogs,Italian,1992 West. Jefferson 60540,Naperville,Chicago,292,41.7699238,-88.2051146,60540,216,"Naperville, Chicago",4.9,Excellent,3F7E00,281
+16737263,Piece,Italian,1927 W North Avenue 60622,Wicker Park,Chicago,292,41.910366,-87.676127,60622,216,"Wicker Park, Chicago",4.8,Excellent,3F7E00,491
+16749727,Portillo's Hot Dogs,Italian,611 East. Golf Road 60173,Schaumburg,Chicago,292,42.049462,-88.0635403,60173,216,"Schaumburg, Chicago",4.8,Excellent,3F7E00,275
+16751857,Labriola Café,Italian,3021 Butterfield Road 60523,Oak Brook,Chicago,292,41.8404416667,-87.9930722222,60523,216,"Oak Brook, Chicago",4.8,Excellent,3F7E00,115
+16736014,Lou Malnati's Pizzeria,Italian,439 N Wells Street 60654,River North,Chicago,292,41.890381,-87.634024,60654,216,"River North, Chicago",4.7,Excellent,3F7E00,789
+16751801,Lou Malnatis Pizzeria,Italian,"805 South State Street, South Loop 60605",South Loop,Chicago,292,41.87159,-87.62736,60605,216,"South Loop, Chicago",4.7,Excellent,3F7E00,428
+16747377,Portillo's Hot Dogs,Italian,950 East. Ogden Avenue 60563,Naperville,Chicago,292,41.7891030003,-88.1321061779,60563,216,"Naperville, Chicago",4.7,Excellent,3F7E00,95
+16750628,Portillo's Hot Dogs,Italian,221 East. Townline Road 60061,Vernon Hills,Chicago,292,42.2399155237,-87.9590944201,60061,216,"Vernon Hills, Chicago",4.7,Excellent,3F7E00,91
+16734669,Grand Lux Cafe,Italian,600 N Michigan Avenue 60611,River North,Chicago,292,41.8935805556,-87.6251138889,60611,216,"River North, Chicago",4.6,Excellent,3F7E00,807
+16737523,Quartino Ristorante,Italian,626 North. State Street 60654,River North,Chicago,292,41.89328,-87.6282,60654,216,"River North, Chicago",4.6,Excellent,3F7E00,530
+16739342,Volare Ristorante Italiano,Italian,"201 East Grand Avenue, Streeterville 60611",Streeterville,Chicago,292,41.89167,-87.62259,60611,216,"Streeterville, Chicago",4.6,Excellent,3F7E00,302
+16736431,Mia Francesca,Italian,3311 North Clark Street 60657,Lakeview,Chicago,292,41.942182,-87.652106,60657,216,"Lakeview, Chicago",4.6,Excellent,3F7E00,297
+16736372,Medici on 57th,Italian,1327 E 57th Street 60637,Hyde Park,Chicago,292,41.7914055556,-87.5936194444,60637,216,"Hyde Park, Chicago",4.6,Excellent,3F7E00,181
+16732920,Calo Ristorante,Italian,"5343 N Clark Street, Chicago 60640",Edgewater,Chicago,292,41.979341,-87.668182,60640,216,"Edgewater, Chicago",4.6,Excellent,3F7E00,192
+16747318,Lou Malnati's Pizzeria,Italian,131 W Jefferson Avenue 60540,Naperville,Chicago,292,41.773025,-88.15075,60540,216,"Naperville, Chicago",4.6,Excellent,3F7E00,175
+16743138,Portillo's Hot Dogs,Italian,1500 Butterfield Road 60515,Downers Grove,Chicago,292,41.8343937962,-88.0224877596,60515,216,"Downers Grove, Chicago",4.6,Excellent,3F7E00,109
+16739159,Tufano's Vernon Park Tap,Italian,"1073 W Vernon Park Plaza, Chicago 60607",University Village,Chicago,292,41.8729472222,-87.6541444444,60607,216,"University Village, Chicago",4.6,Excellent,3F7E00,119
+16751799,Portillo's Hot Dogs,Italian,806 West. Dundee Road 60004,Arlington Heights,Chicago,292,42.1394417636,-87.9919467866,60004,216,"Arlington Heights, Chicago",4.6,Excellent,3F7E00,81
+16740971,Portillo's Hot Dogs,Italian,531 North. Randall Road 60510,Batavia,Chicago,292,41.8607901492,-88.3414194687,60510,216,"Batavia, Chicago",4.6,Excellent,3F7E00,50
+16734562,Giordano's,Italian,730 North Rush Street 60611,River North,Chicago,292,41.8959932896,-87.6256958395,60611,216,"River North, Chicago",4.5,Excellent,3F7E00,468
+16756116,Eataly,Italian,43 East Ohio Street 60611,River North,Chicago,292,41.892126,-87.626088,60611,216,"River North, Chicago",4.5,Excellent,3F7E00,271
+16738243,Spacca Napoli,Italian,"1769 W Sunnyside Avenue, Chicago 60640",Andersonville,Chicago,292,41.9633305556,-87.6735,60640,216,"Andersonville, Chicago",4.5,Excellent,3F7E00,241
+16736015,Lou Malnati's Pizzeria,Italian,958 W Wrightwood Avenue 60614,Lincoln Park,Chicago,292,41.929137,-87.653028,60614,216,"Lincoln Park, Chicago",4.5,Excellent,3F7E00,181
+16753342,Davanti Enoteca,Italian,"1359 W Taylor Street, Chicago 60607",University Village,Chicago,292,41.8692888889,-87.6615305556,60607,216,"University Village, Chicago",4.5,Excellent,3F7E00,144
+16747307,La Sorella di Francesca,Italian,18 W. Jefferson Avenue 60540,Naperville,Chicago,292,41.7729611111,-88.14865,60540,216,"Naperville, Chicago",4.5,Excellent,3F7E00,88
+16745184,Aurelio's Pizza - Homewood,Italian,18162 Hardwood Avenue 60430,Homewood,Chicago,292,41.559516,-87.668968,60430,216,"Homewood, Chicago",4.5,Excellent,3F7E00,75
+16741501,Portillo's Hot Dogs,Italian,134 East. Boughton Road 60440,Bolingbrook,Chicago,292,41.711865766,-88.067137152,60440,216,"Bolingbrook, Chicago",4.5,Excellent,3F7E00,68
+16732676,Buona Terra,Italian,2535 North California Avenue 60647,Logan Square,Chicago,292,41.92757,-87.6974,60647,216,"Logan Square, Chicago",4.5,Excellent,3F7E00,64
+16732938,Candlelite Chicago,Italian,"7452 North Western Avenue, Rogers Park/West Ridge 60645",West Ridge,Chicago,292,42.01709,-87.69028,60645,216,"West Ridge, Chicago",4.5,Excellent,3F7E00,50
+16753052,Chicago Dough Co,Italian,1080 East Lincoln Hwy 60451,New Lenox,Chicago,292,41.51236,-87.94393,60451,216,"New Lenox, Chicago",4.5,Excellent,3F7E00,19
+16739898,Rosebud on Rush,Italian,720 North Rush Street 60611,River North,Chicago,292,41.895474,-87.625405,60611,216,"River North, Chicago",4.4,Very Good,5BA829,314
+16739096,Topo Gigio Ristorante,Italian,"1516 N Wells Street, Chicago 60610",Old Town,Chicago,292,41.9097111111,-87.6348027778,60610,216,"Old Town, Chicago",4.4,Very Good,5BA829,183
+16749677,Lou Malnati's Pizzeria,Italian,1 S Roselle Road 60193,Schaumburg,Chicago,292,42.0272111111,-88.0794916667,60193,216,"Schaumburg, Chicago",4.4,Very Good,5BA829,135
+16732101,Art of Pizza,Italian,3033 North Ashland Avenue 60657,Lakeview,Chicago,292,41.9372027778,-87.6684194444,60657,216,"Lakeview, Chicago",4.4,Very Good,5BA829,125
+16739571,Zia's Trattoria,Italian,"6699 N. Northwest Highway, Chicago 60631",Park Ridge,Chicago,292,42.002725,-87.8160388889,60631,216,"Park Ridge, Chicago",4.4,Very Good,5BA829,80
+16739329,Vito & Nick's Pizzeria,Italian,"8433 S. Pulaski Road, Chicago 60652",West Lawn,Chicago,292,41.739236,-87.7214132,60652,216,"West Lawn, Chicago",4.4,Very Good,5BA829,94
+16739752,Union Pizzeria,Italian,1245 Chicago Avenue 60202,Evanston,Chicago,292,42.0408861111,-87.68055,60202,216,"Evanston, Chicago",4.4,Very Good,5BA829,94
+16752484,Xoco,Mexican,"449 N Clark Street, Chicago 60654",River North,Chicago,292,41.8907916667,-87.6310722222,60654,216,"River North, Chicago",4.9,Excellent,3F7E00,737
+16751896,Frontera Grill,Mexican,445 North Clark Street 60654,River North,Chicago,292,41.8904333333,-87.6311333333,60654,216,"River North, Chicago",4.7,Excellent,3F7E00,822
+16752698,Big Star,Mexican,"1531 N Damen Avenue, Chicago 60622",Wicker Park,Chicago,292,41.9092416667,-87.6772527778,60622,216,"Wicker Park, Chicago",4.7,Excellent,3F7E00,406
+16752749,Big & Little's,Mexican,"860 N Orleans Street, Chicago 60610",River West,Chicago,292,41.8984722222,-87.6373972222,60610,216,"River West, Chicago",4.6,Excellent,3F7E00,126
+16733011,Carnivale,Mexican,"702 W Fulton Market, Chicago 60661",West Loop,Chicago,292,41.8867333333,-87.6459888889,60661,216,"West Loop, Chicago",4.5,Excellent,3F7E00,381
+16751998,Bien Trucha,Mexican,410 W. State Street 60134,Geneva,Chicago,292,41.887849,-88.309913,60134,216,"Geneva, Chicago",4.5,Excellent,3F7E00,129
+16734129,Cafe El Tapatio,Mexican,3400 North Ashland Avenue 60657,Lakeview,Chicago,292,41.943375,-87.6688611111,60657,216,"Lakeview, Chicago",4.5,Excellent,3F7E00,103
+16745806,Tacos El Norte,Mexican,"213 S. Rand Road, Lake Zurich 60047",Lake Zurich,Chicago,292,42.1945,-88.1103,60047,216,"Lake Zurich, Chicago",4.5,Excellent,3F7E00,46
+16752528,Mercadito,Mexican,"108 West Kinzie Street, River North 60654",River North,Chicago,292,41.88929,-87.63138,60654,216,"River North, Chicago",4.4,Very Good,5BA829,219
+16739732,Maya Del Sol,Mexican,"144 South Oak Park Avenue, Oak Park 60304",Oak Park,Chicago,292,41.88617,-87.79435,60304,216,"Oak Park, Chicago",4.4,Very Good,5BA829,99
+16748282,New Rebozo Mexican Restaurant,Mexican,"1116 Madison Street, Oak Park 60302",Oak Park,Chicago,292,41.8795194444,-87.8030861111,60302,216,"Oak Park, Chicago",4.4,Very Good,5BA829,117
+16744873,La Casa De Isaac,Mexican,431 Temple Avenue 60035,Highwood,Chicago,292,42.20204,-87.80787,60035,216,"Highwood, Chicago",4.4,Very Good,5BA829,65
+16737057,Pancho Pistolas,Mexican,700 W. 31st Street 60616,Bridgeport,Chicago,292,41.8381944444,-87.6439666667,60616,216,"Bridgeport, Chicago",4.4,Very Good,5BA829,55
+16743860,Buenas Nachos,Mexican,444 N. La Grange Road 60423,Frankfort,Chicago,292,41.5093,-87.8497,60423,216,"Frankfort, Chicago",4.4,Very Good,5BA829,26
+16739196,Uncle Julio's,Mexican,855 W North Avenue 60622,Lincoln Park,Chicago,292,41.9107583333,-87.6502916667,60622,216,"Lincoln Park, Chicago",4.3,Very Good,5BA829,206
+16753746,Tortas Frontera,Mexican,"O'Hare International Airport, Terminal 1, Gate B11, Chicago 60666",Airport: Chicago O'Hare,Chicago,292,41.974407,-87.891071,60666,216,"Airport: Chicago O'Hare, Chicago",4.3,Very Good,5BA829,164
+16733682,¡Hello Tacos! De Cero,Mexican,"814 W Randolph Street, Chicago 60607",West Loop,Chicago,292,41.8845253,-87.6481038,60607,216,"West Loop, Chicago",4.3,Very Good,5BA829,122
+16734475,Garcia's Restaurant,Mexican,4760 N Lincoln Ave 60625,Lincoln Square,Chicago,292,41.9680861111,-87.6883611111,60625,216,"Lincoln Square, Chicago",4.3,Very Good,5BA829,105
+16739916,Flaco's Tacos,Mexican,725 S Dearborn Street 60605,South Loop,Chicago,292,41.8726888889,-87.6292638889,60605,216,"South Loop, Chicago",4.3,Very Good,5BA829,82
+16739628,Carbón,Mexican,300 W. 26th Street 60616,Chinatown,Chicago,292,41.845637,-87.63445,60616,216,"Chinatown, Chicago",4.3,Very Good,5BA829,39
+16748416,Chipotle Mexican Grill,Mexican,15240 South La Grange Road 60462,Orland Park,Chicago,292,41.6129933728,-87.8549380212,60462,216,"Orland Park, Chicago",4.3,Very Good,5BA829,36
+16742747,Chipotle Mexican Grill,Mexican,675 Deerfield Road Ste 120 60015,Deerfield,Chicago,292,42.1670728303,-87.8441075647,60015,216,"Deerfield, Chicago",4.3,Very Good,5BA829,17
+16738755,Tacos Erendira,Mexican,"3207 S Halsted Street, Chicago 60608",Bridgeport,Chicago,292,41.835839,-87.646076,60608,216,"Bridgeport, Chicago",4.3,Very Good,5BA829,14
+16739809,Mexique,Mexican,1529 W Chicago Avenue 60622,West Town,Chicago,292,41.8960333333,-87.6660166667,60622,216,"West Town, Chicago",4.2,Very Good,5BA829,100
+16740401,Salsa 17,Mexican,17 West Campbell Street 60005,Arlington Heights,Chicago,292,42.0826418,-87.9836203,60005,216,"Arlington Heights, Chicago",4.2,Very Good,5BA829,87
+16751948,Ritos Mexican Restaurant,Mexican,3450 Montgomery Road 60504,"Meadow Lakes Plaza, Aurora",Chicago,292,41.7327305556,-88.2325055556,60504,216,"Meadow Lakes Plaza, Aurora, Chicago",4.2,Very Good,5BA829,33
+16734349,Flo,Mexican,1434 W Chicago Avenue 60622,West Town,Chicago,292,41.8953472222,-87.7241666667,60622,216,"West Town, Chicago",4.2,Very Good,5BA829,82
+16735703,La Pasadita,Mexican,1140 North Ashland Avenue 60622,West Town,Chicago,292,41.90249,-87.66756,60622,216,"West Town, Chicago",4.2,Very Good,5BA829,78
+16738996,That Little Mexican Cafe,Mexican,1010 Church Street 60201,Evanston,Chicago,292,42.0485166667,-87.685775,60201,216,"Evanston, Chicago",4.2,Very Good,5BA829,73
+16746169,Yerbabuena,Mexican,"4732 Main Street, Lisle 60532",Lisle,Chicago,292,41.7995638889,-88.0747611111,60532,216,"Lisle, Chicago",4.2,Very Good,5BA829,52
+16753725,Mago Grill & Cantina,Mexican,"115 W. Campbell Street, 60005",Arlington Heights,Chicago,292,42.0828777778,-87.9848416667,60005,216,"Arlington Heights, Chicago",4.2,Very Good,5BA829,43
+16740949,El Taco Grande,Mexican,"6 N. River Street, Batavia 60510",Batavia,Chicago,292,41.8501,-88.3056,60510,216,"Batavia, Chicago",4.2,Very Good,5BA829,40
+16741434,Bucho's Mexican Restaurant,Mexican,"235 S Bolingbrook Drive, Bolingbrook 60440",Bolingbrook,Chicago,292,41.6944,-88.0683,60440,216,"Bolingbrook, Chicago",4.2,Very Good,5BA829,28
+16740311,Javier's Sabor Mexicano & Agave Bar,Mexican,"8 W. Miner Street, Arlington Heights, Arlington Hts, Chicago 60004",Arlington Heights,Chicago,292,42.0848416667,-87.9833916667,60004,216,"Arlington Heights, Chicago",4.2,Very Good,5BA829,39
+16749883,Casa Maya,Mexican,"805 W Jefferson Street, Shorewood 60404",Shorewood,Chicago,292,41.5214,-88.2068,60404,216,"Shorewood, Chicago",4.2,Very Good,5BA829,27
+16746115,El Burrito Mexicano,Mexican,"1219 Maple Avenue, Lisle 60532",Lisle,Chicago,292,41.7861166667,-88.0755222222,60532,216,"Lisle, Chicago",4.2,Very Good,5BA829,21
+16740894,Jc's Mexican Restaurant,Mexican,"130 W Bartlett Ave, Bartlett 60103",Bartlett,Chicago,292,41.9924,-88.1846,60103,216,"Bartlett, Chicago",4.2,Very Good,5BA829,19
+16734421,Fred & Jack's El Gran Burrito,Mexican,"271 W 76th Street, Chicago 60620",Greater Grand Crossing,Chicago,292,41.756163,-87.631413,60620,216,"Greater Grand Crossing, Chicago",4.2,Very Good,5BA829,22
+16735624,La Casa Del Pueblo,Mexican,"1834 S Blue Island Avenue, Chicago 60608",Pilsen,Chicago,292,41.8572777778,-87.6621027778,60608,216,"Pilsen, Chicago",4.2,Very Good,5BA829,16
+16737175,Peeples Taco,Mexican,"5944 W. Chicago Avenue, Chicago 60651",Austin,Chicago,292,41.8946944444,-87.774125,60651,216,"Austin, Chicago",4.2,Very Good,5BA829,13

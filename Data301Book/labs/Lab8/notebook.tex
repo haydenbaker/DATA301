@@ -1,0 +1,824 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{8A. Song Lyrics Generator}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \hypertarget{a.-song-lyrics-generator}{%
+\section{8A. Song Lyrics Generator}\label{a.-song-lyrics-generator}}
+
+In this lab, you will scrape a website to get lyrics of songs by your
+favorite artist. Then, you will train a model called a Markov chain on
+these lyrics so that you can generate a song in the style of your
+favorite artist.
+
+\hypertarget{question-1.-scraping-song-lyrics}{%
+\section{Question 1. Scraping Song
+Lyrics}\label{question-1.-scraping-song-lyrics}}
+
+Find a web site that has lyrics for several songs by your favorite
+artist. Scrape the lyrics into a Python list called \texttt{lyrics},
+where each element of the list represents the lyrics of one song.
+
+\textbf{Tips:} - Find a web page that has links to all of the songs,
+like \href{http://www.azlyrics.com/n/nirvana.html}{this one}.
+{[}\emph{Note:} It appears that \texttt{azlyrics.com} blocks web
+scraping, so you'll have to find a different lyrics web site.{]} Then,
+you can scrape this page, extract the hyperlinks, and issue new HTTP
+requests to each hyperlink to get each song. - Use \texttt{time.sleep()}
+to stagger your HTTP requests so that you do not get banned by the
+website for making too many requests.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k+kn}{import} \PY{n+nn}{requests}\PY{o}{,} \PY{n+nn}{re}\PY{o}{,} \PY{n+nn}{time}\PY{o}{,} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+        \PY{k+kn}{from} \PY{n+nn}{bs4} \PY{k}{import} \PY{n}{BeautifulSoup}
+        
+        \PY{k}{def} \PY{n+nf}{depaginate}\PY{p}{(}\PY{n}{url}\PY{p}{)}\PY{p}{:}
+            \PY{c+c1}{\PYZsh{}https://genius.com/api/artists/330928/songs?sort=title\PYZam{}page=1}
+            \PY{n}{resps} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+            \PY{n}{next\PYZus{}page} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdq{}}
+            \PY{n}{resp} \PY{o}{=} \PY{n}{requests}\PY{o}{.}\PY{n}{get}\PY{p}{(}\PY{n}{url} \PY{o}{+} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZam{}page=}\PY{l+s+s2}{\PYZdq{}} \PY{o}{+} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{1}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{o}{.}\PY{n}{json}\PY{p}{(}\PY{p}{)}
+            \PY{k}{while} \PY{n}{next\PYZus{}page} \PY{o+ow}{is} \PY{o+ow}{not} \PY{k+kc}{None}\PY{p}{:}
+                \PY{n}{resps}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{resp}\PY{p}{)}
+                \PY{n}{next\PYZus{}page} \PY{o}{=} \PY{n}{resp}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{response}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{next\PYZus{}page}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}
+                \PY{n}{resp} \PY{o}{=} \PY{n}{requests}\PY{o}{.}\PY{n}{get}\PY{p}{(}\PY{n}{url} \PY{o}{+} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZam{}page=}\PY{l+s+s2}{\PYZdq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{next\PYZus{}page}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{json}\PY{p}{(}\PY{p}{)}
+                \PY{n}{time}\PY{o}{.}\PY{n}{sleep}\PY{p}{(}\PY{l+m+mf}{0.25}\PY{p}{)}
+            \PY{k}{return} \PY{n}{resps}
+        
+        \PY{k}{def} \PY{n+nf}{parseLyric}\PY{p}{(}\PY{n}{string}\PY{p}{)}\PY{p}{:}
+            \PY{n}{lyric} \PY{o}{=} \PY{n}{re}\PY{o}{.}\PY{n}{sub}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{[([A\PYZhy{}Za\PYZhy{}z0\PYZhy{}9\PYZus{} \PYZhy{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{?]+)}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{]}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{string}\PY{p}{)}
+            \PY{n}{lyric} \PY{o}{=} \PY{n}{lyric}\PY{o}{.}\PY{n}{strip}\PY{p}{(}\PY{p}{)}
+            \PY{k}{return} \PY{n}{re}\PY{o}{.}\PY{n}{sub}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{[}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{()}\PY{l+s+se}{\PYZbs{}\PYZdq{}}\PY{l+s+s2}{]}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{lyric}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ \PYZlt{}N\PYZgt{} }\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{getLyrics}\PY{p}{(}\PY{n}{songs}\PY{p}{)}\PY{p}{:}
+            \PY{n}{lyrics} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+            \PY{k}{for} \PY{n}{song} \PY{o+ow}{in} \PY{n}{songs}\PY{p}{:}
+                \PY{n}{html} \PY{o}{=} \PY{n}{requests}\PY{o}{.}\PY{n}{get}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{https://genius.com}\PY{l+s+s2}{\PYZdq{}} \PY{o}{+} \PY{n}{song}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{path}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{)}
+                \PY{n}{soup} \PY{o}{=} \PY{n}{BeautifulSoup}\PY{p}{(}\PY{n}{html}\PY{o}{.}\PY{n}{content}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{html.parser}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+                \PY{n}{lyrics}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{parseLyric}\PY{p}{(}\PY{n}{soup}\PY{o}{.}\PY{n}{find}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{div}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{class\PYZus{}}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{lyrics}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{o}{.}\PY{n}{p}\PY{o}{.}\PY{n}{text}\PY{p}{)}\PY{p}{)}
+            \PY{k}{return} \PY{n}{lyrics}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{lyrics} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+        \PY{k}{for} \PY{n}{page} \PY{o+ow}{in} \PY{n}{depaginate}\PY{p}{(}
+            \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{https://genius.com/api/artists/330928/songs?sort=title}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{:}
+            \PY{n}{lyrics} \PY{o}{+}\PY{o}{=} \PY{n}{getLyrics}\PY{p}{(}\PY{n}{page}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{response}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{songs}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{c+c1}{\PYZsh{} Print out the lyrics to the first song.}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{lyrics}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Just forget it <N> I can make it mind over matter <N> I can make you feel something better <N> I don't wanna be apart <N> And I said it <N> Everything in life has an ending <N> Think of all the days we were spending <N> Hoping for a way to start <N>  <N>  <N> I came to leave it right <N> I hope to stay the night <N> You back away but it's already love <N>  <N>  <N> I know you think that I'm crazy <N> Cause I can't stop calling you baby <N> And I know that you'll never break me <N> Cause it's already love <N> Cause it's already love <N>  <N>  <N> I'm a soldier <N> Fight it, but I know that I need it <N> Try to look away but I see ya <N> Yeah, your body feels like home <N> Is it over? <N> We don't have to wait on forever <N> We can go a long way together <N> I just wanna let you know <N>  <N>  <N> I came to leave it right <N> I hope to stay the night <N> You back away but it's already love <N>  <N>  <N> I know you think that I'm crazy <N> Cause I can't stop calling you baby <N> And I know that you'll never break me <N> Cause it's already love <N> Cause it's already love <N> You know that look that you gave me <N> Yeah it knocked me out, but it saved me <N> And I don't quite know what I'm saying <N> Cause it's already love <N> Cause it's already love <N>  <N>  <N> I feel it coming back <N> Hoping for a little <N> Waiting for somebody to come <N> I'll show you what to knock for <N> Nothing can mistake my power <N> Everything you want is everything I wanted <N> Now I wanna tell you, now I wanna tell you <N>  <N>  <N> I know you think that I'm crazy <N> Cause I can't stop calling you baby <N> And I know that you'll never break me <N> Cause it's already love <N> Cause it's already love <N> You know that look that you gave me <N> Yeah it knocked me out, but it saved me <N> And I don't quite know what I'm saying <N> Cause it's already love <N> Cause it's already love
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{lyrics}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{8}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}4}]:} ['Just', 'forget', 'it', '<N>', 'I', 'can', 'make', 'it']
+\end{Verbatim}
+            
+    \texttt{pickle} is a Python library that serializes Python objects to
+disk so that you can load them in later.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{k+kn}{import} \PY{n+nn}{pickle}
+        \PY{n}{pickle}\PY{o}{.}\PY{n}{dump}\PY{p}{(}\PY{n}{lyrics}\PY{p}{,} \PY{n+nb}{open}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{lyrics.pkl}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{wb}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \hypertarget{question-2.-unigram-markov-chain-model}{%
+\section{Question 2. Unigram Markov Chain
+Model}\label{question-2.-unigram-markov-chain-model}}
+
+You will build a Markov chain for the artist whose lyrics you scraped in
+Lab A. Your model will process the lyrics and store the word transitions
+for that artist. The transitions will be stored in a dict called
+\texttt{chain}, which maps each word to a list of ``next'' words.
+
+For example, if your song was
+\href{https://www.youtube.com/watch?v=FgDU17xqNXo}{``The Joker'' by the
+Steve Miller Band}, \texttt{chain} might look as follows:
+
+\begin{verbatim}
+chain = {
+    "some": ["people", "call", "people"],
+    "call": ["me", "me", "me"],
+    "the": ["space", "gangster", "pompitous", ...],
+    "me": ["the", "the", "Maurice"],
+    ...
+}
+\end{verbatim}
+
+Besides words, you should include a few additional states in your Markov
+chain. You should have \texttt{"\textless{}START\textgreater{}"} and
+\texttt{"\textless{}END\textgreater{}"} states so that we can keep track
+of how songs are likely to begin and end. You should also include a
+state called \texttt{"\textless{}N\textgreater{}"} to denote line breaks
+so that you can keep track of where lines begin and end. It is up to you
+whether you want to include normalize case and strip punctuation.
+
+So for example, for
+\href{https://www.azlyrics.com/lyrics/stevemillerband/thejoker.html}{``The
+Joker''}, you would add the following to your chain:
+
+\begin{verbatim}
+chain = {
+    "<START>": ["Some", ...],
+    "Some": ["people", ...],
+    "people": ["call", ...],
+    "call": ["me", ...],
+    "me": ["the", ...],
+    "the": ["space", ...],
+    "space": ["cowboy,", ...],
+    "cowboy,": ["yeah", ...],
+    "yeah": ["<N>", ...],
+    "<N>": ["Some", ..., "Come"],
+    ...,
+    "Come": ["on", ...],
+    "on": ["baby", ...],
+    "baby": ["and", ...],
+    "and": ["I'll", ...],
+    "I'll": ["show", ...],
+    "show": ["you", ...],
+    "you": ["a", ...],
+    "a": ["good", ...],
+    "good": ["time", ...],
+    "time": ["<END>", ...],
+}
+\end{verbatim}
+
+Your chain will be trained on not just one song, but by all songs by
+your artist.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{k}{def} \PY{n+nf}{train\PYZus{}markov\PYZus{}chain}\PY{p}{(}\PY{n}{lyrics}\PY{p}{)}\PY{p}{:}
+             \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+         \PY{l+s+sd}{    Args:}
+         \PY{l+s+sd}{      \PYZhy{} lyrics: a list of strings, where each string represents}
+         \PY{l+s+sd}{                the lyrics of one song by an artist.}
+         \PY{l+s+sd}{    }
+         \PY{l+s+sd}{    Returns:}
+         \PY{l+s+sd}{      A dict that maps a single word (\PYZdq{}unigram\PYZdq{}) to a list of}
+         \PY{l+s+sd}{      words that follow that word, representing the Markov}
+         \PY{l+s+sd}{      chain trained on the lyrics.}
+         \PY{l+s+sd}{    \PYZdq{}\PYZdq{}\PYZdq{}}
+             \PY{n}{chain} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZlt{}START\PYZgt{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{p}{[}\PY{p}{]}\PY{p}{\PYZcb{}}
+             \PY{k}{for} \PY{n}{lyric} \PY{o+ow}{in} \PY{n}{lyrics}\PY{p}{:}
+                 \PY{n}{key} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZlt{}START\PYZgt{}}\PY{l+s+s2}{\PYZdq{}}
+                 \PY{k}{for} \PY{n}{word} \PY{o+ow}{in} \PY{n}{lyric}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+                     \PY{n}{chain}\PY{p}{[}\PY{n}{key}\PY{p}{]}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{word}\PY{p}{)}
+                     \PY{n}{key} \PY{o}{=} \PY{n}{word}
+                     \PY{k}{if} \PY{n}{key} \PY{o+ow}{not} \PY{o+ow}{in} \PY{n}{chain}\PY{p}{:}
+                         \PY{n}{chain}\PY{p}{[}\PY{n}{key}\PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+                 \PY{n}{chain}\PY{p}{[}\PY{n}{key}\PY{p}{]}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZlt{}END\PYZgt{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+             \PY{k}{return} \PY{n}{chain}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{c+c1}{\PYZsh{} Load the pickled lyrics object that you created in Lab A.}
+         \PY{k+kn}{import} \PY{n+nn}{pickle}
+         \PY{n}{lyrics} \PY{o}{=} \PY{n}{pickle}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n+nb}{open}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{lyrics.pkl}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{rb}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Call the function you wrote above.}
+         \PY{n}{chain} \PY{o}{=} \PY{n}{train\PYZus{}markov\PYZus{}chain}\PY{p}{(}\PY{n}{lyrics}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} What words tend to start a song (i.e., what words follow the \PYZlt{}START\PYZgt{} tag?)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{chain}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZlt{}START\PYZgt{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} What words tend to begin a line (i.e., what words follow the line break tag?)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{chain}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZlt{}N\PYZgt{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{20}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+['Just', 'Waiting', 'I', 'I', 'Every', 'Baby', 'I', 'Do', 'Are', 'Yeah,', 'You', 'No', 'Easy', 'Who', 'I', "I've", "I've", "I've", "I've", 'Walking', 'You', 'You', 'Treat', 'Any', 'Thought', "It's", 'I', 'I', 'You', 'You', 'Jump', 'I', 'I', 'Meant', "It's", "I've", 'Ooh', 'Ooh']
+['I', 'I', 'I', 'And', 'Everything', 'Think', 'Hoping', '<N>', '<N>', 'I', 'I', 'You', '<N>', '<N>', 'I', 'Cause', 'And', 'Cause', 'Cause', '<N>']
+
+    \end{Verbatim}
+
+    Now, let's generate new lyrics using the Markov chain you constructed
+above. To do this, we'll begin at the
+\texttt{"\textless{}START\textgreater{}"} state and randomly sample a
+word from the list of words that follow
+\texttt{"\textless{}START\textgreater{}"}. Then, at each step, we'll
+randomly sample the next word from the list of words that followed each
+current word. We will continue this process until we sample the
+\texttt{"\textless{}END\textgreater{}"} state. This will give us the
+complete lyrics of a randomly generated song!
+
+You may find the \texttt{random.choice()} function helpful for this
+question.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{k+kn}{import} \PY{n+nn}{random}
+         
+         \PY{k}{def} \PY{n+nf}{generate\PYZus{}new\PYZus{}lyrics}\PY{p}{(}\PY{n}{chain}\PY{p}{)}\PY{p}{:}
+             \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+         \PY{l+s+sd}{    Args:}
+         \PY{l+s+sd}{      \PYZhy{} chain: a dict representing the Markov chain,}
+         \PY{l+s+sd}{               such as one generated by generate\PYZus{}new\PYZus{}lyrics()}
+         \PY{l+s+sd}{    }
+         \PY{l+s+sd}{    Returns:}
+         \PY{l+s+sd}{      A string representing the randomly generated song.}
+         \PY{l+s+sd}{    \PYZdq{}\PYZdq{}\PYZdq{}}
+             
+             \PY{c+c1}{\PYZsh{} a list for storing the generated words}
+             \PY{n}{words} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             \PY{n}{key} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZlt{}START\PYZgt{}}\PY{l+s+s2}{\PYZdq{}}
+             \PY{k}{while} \PY{n}{key} \PY{o}{!=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZlt{}END\PYZgt{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}
+                 \PY{n}{link} \PY{o}{=} \PY{n}{random}\PY{o}{.}\PY{n}{choice}\PY{p}{(}\PY{n}{chain}\PY{p}{[}\PY{n}{key}\PY{p}{]}\PY{p}{)}
+                 \PY{n}{words}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{link}\PY{p}{)}
+                 \PY{n}{key} \PY{o}{=} \PY{n}{link}
+             
+             \PY{c+c1}{\PYZsh{} join the words together into a string with line breaks}
+             \PY{n}{lyrics} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ }\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{words}\PY{p}{[}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+             \PY{k}{return} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{lyrics}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZlt{}N\PYZgt{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{generate\PYZus{}new\PYZus{}lyrics}\PY{p}{(}\PY{n}{chain}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Walking down 
+ Say it 
+ I'm gonna rush 
+ My side I haven't ruined all battling fear the blinding light 
+ I've gotta get to be? 
+ 
+ If I stare at the ways that castle's got a way 
+ You will work it all on my heart alone 
+ And I'm looking at the thing through hell and you how little I tried so hard to make you make a sound? 
+ Take all of something great 
+ 
+ Yeah I feel like you're brave enough 
+ I'm looking out for sure 
+ 
+ 
+ 
+ So don't let someone find you 
+ Ya and far past you're sorry 
+ You're the table 
+ 
+ 
+ 
+ No denying 
+ Are you know 
+ I'm looking down 
+ You're the night my heart alone 
+ I'm gonna love it right now I wanna feel like trying 
+ I'll show me where the thing you got room for me that 
+ But you 
+ 
+ I'm gonna love 
+ I'm running my body said, no other sides? 
+ See me high 
+ I'm never say 
+ And I won't make those things I either way 
+ What do 
+ We'll find that I'm my mind 
+ And don't change 
+ 
+ 
+ You can really hold on 
+ 
+ I'm playing the love 
+ Memories are 
+ She's an easy lover 
+ I need 
+ 
+ Something to get out for me 
+ Ya I'm crazy 
+ Now I'm driving 
+ I've given you got me 
+ 
+ I've been trying 
+ Why would stay the things you when it's already love it makes me 
+ You are you? I don't let someone find you might be 
+ I've been running my phone and I know the times that I'm not up to think something to show you take with nothing to giving up alone
+
+    \end{Verbatim}
+
+    \hypertarget{question-3.-bigram-markov-chain-model}{%
+\section{Question 3. Bigram Markov Chain
+Model}\label{question-3.-bigram-markov-chain-model}}
+
+Now you'll build a more complex Markov chain that uses the last
+\emph{two} words (or bigram) to predict the next word. Now your dict
+\texttt{chain} should map a \emph{tuple} of words to a list of words
+that appear after it.
+
+As before, you should also include tags that indicate the beginning and
+end of a song, as well as line breaks. That is, a tuple might contain
+tags like \texttt{"\textless{}START\textgreater{}"},
+\texttt{"\textless{}END\textgreater{}"}, and
+\texttt{"\textless{}N\textgreater{}"}, in addition to regular words. So
+for example, for
+\href{https://www.azlyrics.com/lyrics/stevemillerband/thejoker.html}{``The
+Joker''}, you would add the following to your chain:
+
+\begin{verbatim}
+chain = {
+    (None, "<START>"): ["Some", ...],
+    ("<START>", "Some"): ["people", ...],
+    ("Some", "people"): ["call", ...],
+    ("people", "call"): ["me", ...],
+    ("call", "me"): ["the", ...],
+    ("me", "the"): ["space", ...],
+    ("the", "space"): ["cowboy,", ...],
+    ("space", "cowboy,"): ["yeah", ...],
+    ("cowboy,", "yeah"): ["<N>", ...],
+    ("yeah", "<N>"): ["Some", ...],
+    ("time", "<N>"): ["Come"],
+    ...,
+    ("<N>", "Come"): ["on", ...],
+    ("Come", "on"): ["baby", ...],
+    ("on", "baby"): ["and", ...],
+    ("baby", "and"): ["I'll", ...],
+    ("and", "I'll"): ["show", ...],
+    ("I'll", "show"): ["you", ...],
+    ("show", "you"): ["a", ...],
+    ("you", "a"): ["good", ...],
+    ("a", "good"): ["time", ...],
+    ("good", "time"): ["<END>", ...],
+}
+\end{verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{k}{def} \PY{n+nf}{train\PYZus{}markov\PYZus{}chain}\PY{p}{(}\PY{n}{lyrics}\PY{p}{)}\PY{p}{:}
+             \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+         \PY{l+s+sd}{    Args:}
+         \PY{l+s+sd}{      \PYZhy{} lyrics: a list of strings, where each string represents}
+         \PY{l+s+sd}{                the lyrics of one song by an artist.}
+         \PY{l+s+sd}{    }
+         \PY{l+s+sd}{    Returns:}
+         \PY{l+s+sd}{      A dict that maps a tuple of 2 words (\PYZdq{}bigram\PYZdq{}) to a list of}
+         \PY{l+s+sd}{      words that follow that bigram, representing the Markov}
+         \PY{l+s+sd}{      chain trained on the lyrics.}
+         \PY{l+s+sd}{    \PYZdq{}\PYZdq{}\PYZdq{}}
+             \PY{n}{chain} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{(}\PY{k+kc}{None}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZlt{}START\PYZgt{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{:} \PY{p}{[}\PY{p}{]}\PY{p}{\PYZcb{}}
+             \PY{k}{for} \PY{n}{lyric} \PY{o+ow}{in} \PY{n}{lyrics}\PY{p}{:}
+                 \PY{n}{key} \PY{o}{=} \PY{p}{(}\PY{k+kc}{None}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZlt{}START\PYZgt{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+                 \PY{k}{for} \PY{n}{word} \PY{o+ow}{in} \PY{n}{lyric}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+                     \PY{n}{chain}\PY{p}{[}\PY{n}{key}\PY{p}{]}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{word}\PY{p}{)}
+                     \PY{n}{key} \PY{o}{=} \PY{p}{(}\PY{n}{key}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{word}\PY{p}{)}
+                     \PY{k}{if} \PY{n}{key} \PY{o+ow}{not} \PY{o+ow}{in} \PY{n}{chain}\PY{p}{:}
+                         \PY{n}{chain}\PY{p}{[}\PY{n}{key}\PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+                 \PY{n}{chain}\PY{p}{[}\PY{n}{key}\PY{p}{]}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZlt{}END\PYZgt{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+             \PY{k}{return} \PY{n}{chain}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{c+c1}{\PYZsh{} Load the pickled lyrics object that you created in Lab A.}
+         \PY{k+kn}{import} \PY{n+nn}{pickle}
+         \PY{n}{lyrics} \PY{o}{=} \PY{n}{pickle}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n+nb}{open}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{lyrics.pkl}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{rb}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Call the function you wrote above.}
+         \PY{n}{chain} \PY{o}{=} \PY{n}{train\PYZus{}markov\PYZus{}chain}\PY{p}{(}\PY{n}{lyrics}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} What words tend to start a song (i.e., what words follow the \PYZlt{}START\PYZgt{} tag?)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{chain}\PY{p}{[}\PY{p}{(}\PY{k+kc}{None}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZlt{}START\PYZgt{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{chain}\PY{p}{[}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZlt{}START\PYZgt{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Just}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+['Just', 'Waiting', 'I', 'I', 'Every', 'Baby', 'I', 'Do', 'Are', 'Yeah,', 'You', 'No', 'Easy', 'Who', 'I', "I've", "I've", "I've", "I've", 'Walking', 'You', 'You', 'Treat', 'Any', 'Thought', "It's", 'I', 'I', 'You', 'You', 'Jump', 'I', 'I', 'Meant', "It's", "I've", 'Ooh', 'Ooh']
+['forget']
+
+    \end{Verbatim}
+
+    Now, let's generate new lyrics using the Markov chain you constructed
+above. To do this, we'll begin at the
+\texttt{(None,\ "\textless{}START\textgreater{}")} state and randomly
+sample a word from the list of words that follow this bigram. Then, at
+each step, we'll randomly sample the next word from the list of words
+that followed the current bigram (i.e., the last two words). We will
+continue this process until we sample the
+\texttt{"\textless{}END\textgreater{}"} state. This will give us the
+complete lyrics of a randomly generated song!
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{k+kn}{import} \PY{n+nn}{random}
+         
+         \PY{k}{def} \PY{n+nf}{generate\PYZus{}new\PYZus{}lyrics}\PY{p}{(}\PY{n}{chain}\PY{p}{)}\PY{p}{:}
+             \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+         \PY{l+s+sd}{    Args:}
+         \PY{l+s+sd}{      \PYZhy{} chain: a dict representing the Markov chain,}
+         \PY{l+s+sd}{               such as one generated by generate\PYZus{}new\PYZus{}lyrics()}
+         \PY{l+s+sd}{    }
+         \PY{l+s+sd}{    Returns:}
+         \PY{l+s+sd}{      A string representing the randomly generated song.}
+         \PY{l+s+sd}{    \PYZdq{}\PYZdq{}\PYZdq{}}
+             
+             \PY{c+c1}{\PYZsh{} a list for storing the generated words}
+             \PY{n}{words} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             
+             \PY{c+c1}{\PYZsh{} YOUR CODE HERE}
+             \PY{n}{key} \PY{o}{=} \PY{p}{(}\PY{k+kc}{None}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZlt{}START\PYZgt{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+             \PY{k}{while} \PY{n}{key}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{!=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZlt{}END\PYZgt{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}
+                 \PY{n}{link} \PY{o}{=} \PY{n}{random}\PY{o}{.}\PY{n}{choice}\PY{p}{(}\PY{n}{chain}\PY{p}{[}\PY{n}{key}\PY{p}{]}\PY{p}{)}
+                 \PY{n}{words}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{link}\PY{p}{)}
+                 \PY{n}{key} \PY{o}{=} \PY{p}{(}\PY{n}{key}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{link}\PY{p}{)}
+             
+             \PY{c+c1}{\PYZsh{} join the words together into a string with line breaks}
+             \PY{n}{lyrics} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ }\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{words}\PY{p}{[}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+             \PY{k}{return} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{lyrics}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZlt{}N\PYZgt{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{generate\PYZus{}new\PYZus{}lyrics}\PY{p}{(}\PY{n}{chain}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Jump out of the heights 
+ With sting with bite 
+ I'm gonna tell you how I feel like, feel like, feel like I'll never change 
+ I feel like, feel like trying 
+ 
+ I saw you I am dying 
+ To say that it's me? 
+ Forget about the past you're holding 
+ Move on to 
+ Lie on the line 
+ If you're brave enough to love it if we try 
+ But you got your things to hold her 
+ You'd better forget it 
+ Will you come here to see it's not my time 
+ Love you 
+ How will I let you go? 
+ You were there for me, and I was doing 
+ Turn salt to pearl 
+ True no duke no earl 
+ But from the other way 
+ I know that I'm crazy 
+ Cause it's already love 
+ 
+ I won't bruise you either way 
+ I've been running my whole life 
+ Say it all 
+ Say it all 
+ I've come to get you I'm all I find 
+ Every time I ever fought it 
+ Oh ooh oh oh ooh 
+ It's almost too much to handle
+
+    \end{Verbatim}
+
+    \hypertarget{analysis}{%
+\section{Analysis}\label{analysis}}
+
+Compare the quality of the lyrics generated by the unigram model (in Lab
+B) and the bigram model (in Lab C). Which model seems to generate more
+reasonable lyrics? Can you explain why? What do you see as the
+advantages and disadvantages of each model?
+
+    It appears that the bi-gram markov chain generates more cohesive (both
+gramatically and lyrically) song lyrics. This is because (at least for
+the grammar part) it is sampling a bi-gram from naturally occuring two
+word sequences. Therefore the words ``I've been running my'' (``I've
+been'', ``been running'', ``running my'') appear naturally frequently
+together in the song lyrics versus ``I've given you got'' (``I've'',
+``given'', ``you'', ``got''). To be clearer, the bigrams are more
+probabilistically prone to be more grammatically correct than the
+unigrams
+
+    \hypertarget{submission-instructions}{%
+\section{Submission Instructions}\label{submission-instructions}}
+
+Once you are finished, follow these steps:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Restart the kernel and re-run this notebook from beginning to end by
+  going to
+  \texttt{Kernel\ \textgreater{}\ Restart\ Kernel\ and\ Run\ All\ Cells}.
+\item
+  If this process stops halfway through, that means there was an error.
+  Correct the error and repeat Step 1 until the notebook runs from
+  beginning to end.
+\item
+  Double check that there is a number next to each code cell and that
+  these numbers are in order.
+\end{enumerate}
+
+Then, submit your lab as follows:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Go to
+  \texttt{File\ \textgreater{}\ Export\ Notebook\ As\ \textgreater{}\ PDF}.
+\item
+  Double check that the entire notebook, from beginning to end, is in
+  this PDF file. (If the notebook is cut off, try first exporting the
+  notebook to HTML and printing to PDF.)
+\item
+  Upload the PDF
+  \href{https://polylearn.calpoly.edu/AY_2018-2019/mod/assign/view.php?id=349486}{to
+  PolyLearn}.
+\end{enumerate}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}

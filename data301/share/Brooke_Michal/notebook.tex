@@ -1,0 +1,1272 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Data Collecting and Cleaning}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \hypertarget{data-collection-and-cleaning}{%
+\section{Data Collection and
+Cleaning}\label{data-collection-and-cleaning}}
+
+    \textbf{Research Question: What factors effect a country's proportion of
+women in high ranking positions?}
+
+How does women involvement in government predict prevalence of women in
+the private sector? We hypothesized that more women in government will
+mean more women in the country's top jobs. Female legislators lead the
+country to increase laws concerning maternity leave, parental rights,
+contreception, divorce laws, etc. We believe these aspects would
+contribute to women being able to work full time and be able to hold
+management positions.
+
+    We used many separate data sets and wanted to combine all of these data
+sets by country name. To address the problem of different sources using
+different styles and notaion to label the same country, we created two
+functions to help us combine data sets by country names. We also always
+double checked that the functions correcly map the country names. If
+necesary, we also hard coded any differences in country names that the
+function did not detect.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}118}]:} \PY{k+kn}{from} \PY{n+nn}{difflib} \PY{k}{import} \PY{n}{SequenceMatcher}
+          
+          \PY{k}{def} \PY{n+nf}{similar}\PY{p}{(}\PY{n}{a}\PY{p}{,} \PY{n}{b}\PY{p}{)}\PY{p}{:}
+              \PY{k}{return} \PY{n}{SequenceMatcher}\PY{p}{(}\PY{k+kc}{None}\PY{p}{,} \PY{n}{a}\PY{p}{,} \PY{n}{b}\PY{p}{)}\PY{o}{.}\PY{n}{ratio}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}119}]:} \PY{k}{def} \PY{n+nf}{get\PYZus{}diff\PYZus{}dict}\PY{p}{(}\PY{n}{list1}\PY{p}{,} \PY{n}{list2}\PY{p}{)}\PY{p}{:}
+              \PY{n}{diff} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+              \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{list1}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                  \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{list2}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                      \PY{n}{ratio} \PY{o}{=} \PY{n}{similar}\PY{p}{(}\PY{n}{list1}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,}\PY{n}{list2}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{)}
+                      \PY{k}{if} \PY{p}{(}\PY{n}{ratio} \PY{o}{\PYZgt{}} \PY{l+m+mf}{0.7}\PY{p}{)} \PY{o}{\PYZam{}} \PY{p}{(}\PY{n}{ratio} \PY{o}{!=} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{:}
+                          \PY{n}{diff}\PY{p}{[}\PY{n}{list1}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{]} \PY{o}{=} \PY{n}{list2}\PY{p}{[}\PY{n}{j}\PY{p}{]}
+              \PY{k}{return} \PY{n}{diff}
+\end{Verbatim}
+
+
+    Women in National Parliments is a csv file which contains the proportion
+of women in national parliments in each country and by year. The years
+1991-1996 had no data and the ``Indicator Name'' and ``Indicator Code''
+were not real variables (repeated ``proportion of women in national
+parliment'' for all columns), which is why we discarded these variables.
+To distinguish from the future data sets we're adding on, we made all
+the years have ``P'' which stands for parliment.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}120}]:} \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+          \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+          
+          \PY{n}{parliment} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZti{}/data301/share/Brooke\PYZus{}Michal/WomenNationalParliments.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{parliment}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Indicator Name}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Indicator Code}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{1991}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{1992}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{1993}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+                          \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{1994}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{1995}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{1996}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,}
+                         \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+          \PY{n}{parliment} \PY{o}{=} \PY{n}{parliment}\PY{p}{[}\PY{o}{\PYZti{}}\PY{n}{parliment}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Country Name}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{str}\PY{o}{.}\PY{n}{contains}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{IDA}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{regex} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}\PY{p}{]}
+          \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1990}\PY{p}{,} \PY{l+m+mi}{2019}\PY{p}{)}\PY{p}{:}
+              \PY{n}{oldname} \PY{o}{=} \PY{n+nb}{str}\PY{p}{(}\PY{n}{i}\PY{p}{)}
+              \PY{n}{newname} \PY{o}{=} \PY{n+nb}{str}\PY{p}{(}\PY{n}{i}\PY{p}{)} \PY{o}{+} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZus{}P}\PY{l+s+s2}{\PYZdq{}}
+              \PY{n}{parliment} \PY{o}{=} \PY{n}{parliment}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{p}{\PYZob{}}\PY{n}{oldname}\PY{p}{:}\PY{n}{newname}\PY{p}{\PYZcb{}}\PY{p}{)}
+          \PY{n}{parliment}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{1990\PYZus{}P}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{2018\PYZus{}P}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n}{parliment}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{1990\PYZus{}P}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{2018\PYZus{}P}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{float}\PY{p}{)}
+          \PY{n}{parliment}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}120}]:}   Country Name Country Code  1990\_P  1997\_P  1998\_P  1999\_P  2000\_P  2001\_P  \textbackslash{}
+          0        Aruba          ABW     NaN     NaN     NaN     NaN     NaN     NaN   
+          1  Afghanistan          AFG     3.7     NaN     NaN     NaN     NaN     NaN   
+          2       Angola          AGO    14.5     9.5    15.5    15.5    15.5    15.5   
+          3      Albania          ALB    28.8     NaN     NaN     5.2     5.2     5.7   
+          4      Andorra          AND     NaN     7.1     7.1     7.1     7.1    14.3   
+          
+             2002\_P  2003\_P   {\ldots}    2009\_P  2010\_P  2011\_P  2012\_P  2013\_P  2014\_P  \textbackslash{}
+          0     NaN     NaN   {\ldots}       NaN     NaN     NaN     NaN     NaN     NaN   
+          1     NaN     NaN   {\ldots}      27.3    27.7    27.7    27.7    27.7    27.7   
+          2    15.5    15.5   {\ldots}      38.6    38.6    38.2    34.1    34.1    36.8   
+          3     5.7     5.7   {\ldots}      16.4    16.4    15.7    15.7    17.9    20.0   
+          4    14.3    14.3   {\ldots}      35.7    35.7    50.0    50.0    50.0    50.0   
+          
+             2015\_P  2016\_P  2017\_P  2018\_P  
+          0     NaN     NaN     NaN     NaN  
+          1    27.7    27.7    27.7    27.7  
+          2    36.8    36.8    38.2    30.5  
+          3    20.7    22.9    27.9    27.9  
+          4    39.3    32.1    32.1    32.1  
+          
+          [5 rows x 25 columns]
+\end{Verbatim}
+            
+    Income groups contained the information about each countries income
+group, as compared to all other countries. There were a few unhelpful
+variables that we decided to drop.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}121}]:} \PY{n}{income\PYZus{}groups} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZti{}/data301/share/Brooke\PYZus{}Michal/IncomeGroups.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{income\PYZus{}groups} \PY{o}{=} \PY{n}{income\PYZus{}groups}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{TableName}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Country Name}\PY{l+s+s2}{\PYZdq{}}\PY{p}{\PYZcb{}}\PY{p}{)}
+          \PY{n}{income\PYZus{}groups}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{SpecialNotes}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Unnamed: 5}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+          \PY{n}{income\PYZus{}groups} \PY{o}{=} \PY{n}{income\PYZus{}groups}\PY{p}{[}\PY{o}{\PYZti{}}\PY{n}{income\PYZus{}groups}\PY{p}{[}
+              \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Country Name}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{str}\PY{o}{.}\PY{n}{contains}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{IDA}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{regex} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}\PY{p}{]}
+          \PY{n}{income\PYZus{}groups}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}121}]:}   Country Code                     Region          IncomeGroup Country Name
+          0          ABW  Latin America \& Caribbean          High income        Aruba
+          1          AFG                 South Asia           Low income  Afghanistan
+          2          AGO         Sub-Saharan Africa  Lower middle income       Angola
+          3          ALB      Europe \& Central Asia  Upper middle income      Albania
+          4          AND      Europe \& Central Asia          High income      Andorra
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}122}]:} \PY{n}{diff\PYZus{}income} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{set}\PY{p}{(}\PY{n+nb}{list}\PY{p}{(}\PY{n}{income\PYZus{}groups}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Country Name}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{)}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n+nb}{set}\PY{p}{(}
+                  \PY{n+nb}{list}\PY{p}{(}\PY{n}{parliment}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Country Name}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+          \PY{n}{diff\PYZus{}parliment} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{set}\PY{p}{(}\PY{n+nb}{list}\PY{p}{(}\PY{n}{parliment}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Country Name}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{)}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n+nb}{set}\PY{p}{(}
+                  \PY{n+nb}{list}\PY{p}{(}\PY{n}{income\PYZus{}groups}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Country Name}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{)}
+              \PY{p}{)}\PY{p}{)}
+          \PY{n}{diff} \PY{o}{=} \PY{n}{get\PYZus{}diff\PYZus{}dict}\PY{p}{(}\PY{n}{diff\PYZus{}income}\PY{p}{,}\PY{n}{diff\PYZus{}parliment}\PY{p}{)}
+          \PY{n}{diff}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}122}]:} \{'Curaçao': 'Curacao',
+           "Korea, Dem. People's Rep.": 'Korea, Dem. People’s Rep.',
+           "Côte d'Ivoire": "Cote d'Ivoire",
+           'São Tomé and Principe': 'Sao Tome and Principe'\}
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}123}]:} \PY{n}{income\PYZus{}groups} \PY{o}{=} \PY{n}{income\PYZus{}groups}\PY{o}{.}\PY{n}{set\PYZus{}index}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Country Name}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{income\PYZus{}groups}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{index}\PY{o}{=} \PY{n}{diff}\PY{p}{,}\PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}124}]:} \PY{c+c1}{\PYZsh{} merge parliment and income data sets}
+          \PY{n}{parliment\PYZus{}income} \PY{o}{=} \PY{n}{parliment}\PY{o}{.}\PY{n}{merge}\PY{p}{(}\PY{n}{income\PYZus{}groups}\PY{p}{,} \PY{n}{on} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Country Name}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} 
+                                          \PY{n}{how} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{outer}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{suffixes}\PY{o}{=}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZus{}y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                                            \PY{p}{)}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Country Code\PYZus{}y}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}
+          \PY{n}{parliment\PYZus{}income}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}124}]:}   Country Name Country Code  1990\_P  1997\_P  1998\_P  1999\_P  2000\_P  2001\_P  \textbackslash{}
+          0        Aruba          ABW     NaN     NaN     NaN     NaN     NaN     NaN   
+          1  Afghanistan          AFG     3.7     NaN     NaN     NaN     NaN     NaN   
+          2       Angola          AGO    14.5     9.5    15.5    15.5    15.5    15.5   
+          3      Albania          ALB    28.8     NaN     NaN     5.2     5.2     5.7   
+          4      Andorra          AND     NaN     7.1     7.1     7.1     7.1    14.3   
+          
+             2002\_P  2003\_P         {\ldots}           2011\_P  2012\_P  2013\_P  2014\_P  \textbackslash{}
+          0     NaN     NaN         {\ldots}              NaN     NaN     NaN     NaN   
+          1     NaN     NaN         {\ldots}             27.7    27.7    27.7    27.7   
+          2    15.5    15.5         {\ldots}             38.2    34.1    34.1    36.8   
+          3     5.7     5.7         {\ldots}             15.7    15.7    17.9    20.0   
+          4    14.3    14.3         {\ldots}             50.0    50.0    50.0    50.0   
+          
+             2015\_P  2016\_P  2017\_P  2018\_P                     Region  \textbackslash{}
+          0     NaN     NaN     NaN     NaN  Latin America \& Caribbean   
+          1    27.7    27.7    27.7    27.7                 South Asia   
+          2    36.8    36.8    38.2    30.5         Sub-Saharan Africa   
+          3    20.7    22.9    27.9    27.9      Europe \& Central Asia   
+          4    39.3    32.1    32.1    32.1      Europe \& Central Asia   
+          
+                     IncomeGroup  
+          0          High income  
+          1           Low income  
+          2  Lower middle income  
+          3  Upper middle income  
+          4          High income  
+          
+          [5 rows x 27 columns]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}125}]:} \PY{c+c1}{\PYZsh{}dropping all non\PYZhy{}countries while manually checking that it didn\PYZsq{}t drop any actual countries}
+          \PY{n}{parliment\PYZus{}income} \PY{o}{=} \PY{n}{parliment\PYZus{}income}\PY{p}{[}
+              \PY{o}{\PYZti{}}\PY{n}{parliment\PYZus{}income}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Country Name}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{str}\PY{o}{.}\PY{n}{contains}\PY{p}{(}
+              \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{income|area|IDA|only|Asia|Europe|Latin|North|}\PY{l+s+s2}{\PYZdq{}}
+              \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Saharan|World|dividend|OECD|UN|affected|HIPC|classified}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+              \PY{n}{regex} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}\PY{p}{]}
+\end{Verbatim}
+
+
+    Similarly to parliment, we wanted to distinguish the variables from this
+data set that were originally just named the year, so we added an M for
+management. This csv gives us the proportion of women in senior and
+middle management positions in each country. We also got rid of columns
+that are not of intrest to our research question.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}126}]:} \PY{n}{management} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZti{}/data301/share/Brooke\PYZus{}Michal/}\PY{l+s+s2}{\PYZdq{}}
+                                  \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{WomenSeniorMiddleManagementPositions.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{management} \PY{o}{=} \PY{n}{management}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{geoAreaCode}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{series\PYZus{}release}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} 
+                          \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{series\PYZus{}code}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{series\PYZus{}description}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}  \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{X}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Y}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} 
+                          \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{sliceId}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Sex}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Units}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Sex\PYZus{}description}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} 
+                          \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{latest\PYZus{}year}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Units\PYZus{}description}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{latest\PYZus{}source}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} 
+                          \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{latest\PYZus{}nature}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{last\PYZus{}5\PYZus{}years\PYZus{}mean}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{FID}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}
+          \PY{n}{management} \PY{o}{=} \PY{n}{management}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{geoAreaName}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Country Name}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} 
+                                                \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ISO3CD}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Country Code}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{latest\PYZus{}value}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{latest\PYZus{}value\PYZus{}M}\PY{l+s+s2}{\PYZdq{}}\PY{p}{\PYZcb{}}\PY{p}{)}
+          \PY{n}{management} \PY{o}{=} \PY{n}{management}\PY{o}{.}\PY{n}{set\PYZus{}index}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Country Name}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{2000}\PY{p}{,} \PY{l+m+mi}{2017}\PY{p}{)}\PY{p}{:}
+              \PY{n}{oldname} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{F}\PY{l+s+s2}{\PYZdq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{i}\PY{p}{)}
+              \PY{n}{newname} \PY{o}{=} \PY{n+nb}{str}\PY{p}{(}\PY{n}{i}\PY{p}{)} \PY{o}{+} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZus{}M}\PY{l+s+s2}{\PYZdq{}}
+              \PY{n}{management} \PY{o}{=} \PY{n}{management}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{p}{\PYZob{}}\PY{n}{oldname}\PY{p}{:}\PY{n}{newname}\PY{p}{\PYZcb{}}\PY{p}{)}
+          \PY{n}{management}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{2000\PYZus{}M}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{2016\PYZus{}M}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n}{management}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{2000\PYZus{}M}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{2016\PYZus{}M}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{float}\PY{p}{)}
+          \PY{n}{management}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}126}]:}                Country Code  2000\_M  2001\_M  2002\_M  2003\_M  2004\_M  2005\_M  \textbackslash{}
+          Country Name                                                                  
+          Afghanistan             AFG     NaN     NaN     NaN     NaN     NaN     NaN   
+          Albania                 ALB     NaN     NaN     NaN     NaN     NaN     NaN   
+          Antarctica              ATA     NaN     NaN     NaN     NaN     NaN     NaN   
+          Algeria                 DZA     NaN     NaN     NaN     NaN     NaN     NaN   
+          American Samoa          ASM     NaN     NaN     NaN     NaN     NaN     NaN   
+          
+                          2006\_M  2007\_M  2008\_M  2009\_M  2010\_M  2011\_M  2012\_M  \textbackslash{}
+          Country Name                                                             
+          Afghanistan        NaN     NaN     NaN     NaN     NaN     NaN     NaN   
+          Albania            NaN     NaN     NaN   22.47     NaN     NaN     NaN   
+          Antarctica         NaN     NaN     NaN     NaN     NaN     NaN     NaN   
+          Algeria            NaN     NaN     NaN     NaN     NaN     NaN     NaN   
+          American Samoa     NaN     NaN     NaN     NaN     NaN     NaN     NaN   
+          
+                          2013\_M  2014\_M  2015\_M  2016\_M  latest\_value\_M  
+          Country Name                                                    
+          Afghanistan        NaN     NaN     NaN     NaN             NaN  
+          Albania            NaN     NaN     NaN     NaN           22.47  
+          Antarctica         NaN     NaN     NaN     NaN             NaN  
+          Algeria            NaN    6.92     NaN     NaN            6.92  
+          American Samoa     NaN     NaN     NaN     NaN             NaN  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}127}]:} \PY{n}{diff\PYZus{}mang} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}
+              \PY{n+nb}{set}\PY{p}{(}
+                  \PY{n+nb}{list}\PY{p}{(}\PY{n}{management}\PY{o}{.}\PY{n}{index}\PY{o}{.}\PY{n}{values}\PY{p}{)}
+              \PY{p}{)} \PY{o}{\PYZhy{}} \PY{n+nb}{set}\PY{p}{(}
+                  \PY{n+nb}{list}\PY{p}{(}\PY{n}{parliment\PYZus{}income}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Country Name}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{)}
+              \PY{p}{)}\PY{p}{)}
+          \PY{n}{diff\PYZus{}parl\PYZus{}income} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}
+              \PY{n+nb}{set}\PY{p}{(}
+                  \PY{n+nb}{list}\PY{p}{(}\PY{n}{parliment\PYZus{}income}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Country Name}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{)}
+              \PY{p}{)} \PY{o}{\PYZhy{}} \PY{n+nb}{set}\PY{p}{(}
+                  \PY{n+nb}{list}\PY{p}{(}\PY{n}{management}\PY{o}{.}\PY{n}{index}\PY{o}{.}\PY{n}{values}\PY{p}{)}
+              \PY{p}{)}\PY{p}{)}
+          \PY{n}{diff} \PY{o}{=} \PY{n}{get\PYZus{}diff\PYZus{}dict}\PY{p}{(}\PY{n}{diff\PYZus{}mang}\PY{p}{,}\PY{n}{diff\PYZus{}parl\PYZus{}income}\PY{p}{)}
+          \PY{n}{diff}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}127}]:} \{'Åland Islands': 'Channel Islands',
+           'Gambia': 'Gambia, The',
+           'Saint Martin (French Part)': 'St. Martin (French part)',
+           'Syrian Arab Republic (Syria)': 'Syrian Arab Republic',
+           'Iran (Islamic Republic of)': 'Iran, Islamic Rep.',
+           'Curaçao': 'Curacao',
+           "Côte d'Ivoire": "Cote d'Ivoire",
+           'Bahamas': 'Bahamas, The',
+           'United States of America': 'United States',
+           'Viet Nam': 'Vietnam',
+           'Saint Vincent and the Grenadines': 'St. Vincent and the Grenadines',
+           'Saint Kitts and Nevis': 'St. Kitts and Nevis',
+           'Micronesia, Federated States of': 'Micronesia, Fed. Sts.',
+           'Saint Lucia': 'St. Lucia'\}
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}128}]:} \PY{k}{del} \PY{n}{diff}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Åland Islands}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+          \PY{n}{management} \PY{o}{=} \PY{n}{management}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{index}\PY{o}{=}\PY{n}{diff}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}129}]:} \PY{n+nb}{set}\PY{p}{(}\PY{n+nb}{list}\PY{p}{(}\PY{n}{management}\PY{o}{.}\PY{n}{index}\PY{o}{.}\PY{n}{values}\PY{p}{)}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n+nb}{set}\PY{p}{(}
+              \PY{n+nb}{list}\PY{p}{(}\PY{n}{parliment\PYZus{}income}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Country Name}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}129}]:} \{'Anguilla',
+           'Antarctica',
+           'Bolivia (Plurinational State of)',
+           'Bouvet Island',
+           'British Indian Ocean Territory',
+           'China, Hong Kong Special Administrative Region',
+           'China, Macao Special Administrative Region',
+           'Christmas Island',
+           'Cocos (Keeling) Islands',
+           'Congo',
+           'Cook Islands',
+           'Czechia',
+           "Democratic People's Republic of Korea",
+           'Democratic Republic of the Congo',
+           'Egypt',
+           'Falkland Islands (Malvinas)',
+           'French Guiana',
+           'French Southern Territories',
+           'Guadeloupe',
+           'Guernsey',
+           'Heard Island and McDonald Islands',
+           'Holy See',
+           'Jersey',
+           'Kyrgyzstan',
+           "Lao People's Democratic Republic",
+           'Macedonia, Republic of',
+           'Martinique',
+           'Mayotte',
+           'Montserrat',
+           'Netherlands Antilles',
+           'Niue',
+           'Norfolk Island',
+           'Northern Mariana Islands',
+           'Pitcairn',
+           'Republic of Korea',
+           'Republic of Moldova',
+           'Réunion',
+           'Saint Barthélemy',
+           'Saint Helena',
+           'Saint Pierre and Miquelon',
+           'Slovakia',
+           'South Georgia and the South Sandwich Islands',
+           'State of Palestine',
+           'Svalbard and Jan Mayen Islands',
+           'Swaziland',
+           'Tanzania, United Republic of',
+           'Tokelau',
+           'US Minor Outlying Islands',
+           'United States Virgin Islands',
+           'Venezuela (Bolivarian Republic)',
+           'Wallis and Futuna Islands',
+           'Western Sahara',
+           'Yemen',
+           'Åland Islands'\}
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}130}]:} \PY{c+c1}{\PYZsh{}there are still difference between the countries that can be fixed with hard coding the names}
+          \PY{n}{management} \PY{o}{=} \PY{n}{management}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{index}\PY{o}{=}
+              \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{China, Hong Kong Special Administrative Region}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Hong Kong SAR, China}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+              \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{China, Macao Special Administrative Region}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Macao SAR, China}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+              \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{State of Palestine}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{West Bank and Gaza}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+              \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Congo}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Congo, Rep.}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+              \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Tanzania, United Republic of}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Tanzania}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+              \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Republic of Moldova}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Moldova}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+              \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Kyrgyzstan}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Kyrgyz Republic}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+              \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Lao People}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{s Democratic Republic}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Lao PDR}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+              \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Venezuela (Bolivarian Republic)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Venezuela, RB}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+              \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Czechia}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Czech Republic}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+              \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Slovakia}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Slovak Republic}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+              \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Democratic People}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{s Republic of Korea}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Korea, Dem. People’s Rep.}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+              \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Egypt}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Egypt, Arab Rep.}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+              \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Bolivia (Plurinational State of)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Bolivia}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+              \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Macedonia, Republic of}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Macedonia, FYR}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+              \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Republic of Korea}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Korea, Rep.}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+              \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Yemen}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Yemen, Rep.}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+              \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Democratic Republic of the Congo}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Congo, Dem. Rep.}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+              \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{United States Virgin Islands}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Virgin Islands (U.S.)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}131}]:} \PY{c+c1}{\PYZsh{} merge management dataset with previously merged parliment and incomes data sets}
+          \PY{n}{par\PYZus{}income\PYZus{}manag} \PY{o}{=} \PY{n}{parliment\PYZus{}income}\PY{o}{.}\PY{n}{merge}\PY{p}{(}\PY{n}{management}\PY{p}{,} 
+                   \PY{n}{on} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Country Name}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{how} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{inner}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{par\PYZus{}income\PYZus{}manag}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}131}]:}   Country Name Country Code\_x  1990\_P  1997\_P  1998\_P  1999\_P  2000\_P  2001\_P  \textbackslash{}
+          0        Aruba            ABW     NaN     NaN     NaN     NaN     NaN     NaN   
+          1  Afghanistan            AFG     3.7     NaN     NaN     NaN     NaN     NaN   
+          2       Angola            AGO    14.5     9.5    15.5    15.5    15.5    15.5   
+          3      Albania            ALB    28.8     NaN     NaN     5.2     5.2     5.7   
+          4      Andorra            AND     NaN     7.1     7.1     7.1     7.1    14.3   
+          
+             2002\_P  2003\_P       {\ldots}        2008\_M  2009\_M  2010\_M  2011\_M  2012\_M  \textbackslash{}
+          0     NaN     NaN       {\ldots}           NaN     NaN     NaN     NaN     NaN   
+          1     NaN     NaN       {\ldots}           NaN     NaN     NaN     NaN     NaN   
+          2    15.5    15.5       {\ldots}           NaN     NaN     NaN     NaN     NaN   
+          3     5.7     5.7       {\ldots}           NaN   22.47     NaN     NaN     NaN   
+          4    14.3    14.3       {\ldots}           NaN     NaN     NaN     NaN     NaN   
+          
+             2013\_M  2014\_M  2015\_M  2016\_M  latest\_value\_M  
+          0     NaN     NaN     NaN     NaN             NaN  
+          1     NaN     NaN     NaN     NaN             NaN  
+          2     NaN     NaN     NaN     NaN             NaN  
+          3     NaN     NaN     NaN     NaN           22.47  
+          4     NaN     NaN     NaN     NaN             NaN  
+          
+          [5 rows x 46 columns]
+\end{Verbatim}
+            
+    Scarping from wiki for the types of government in each country:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}132}]:} \PY{k+kn}{import} \PY{n+nn}{requests}
+          \PY{k+kn}{from} \PY{n+nn}{bs4} \PY{k}{import} \PY{n}{BeautifulSoup}
+          \PY{n}{resp} \PY{o}{=} \PY{n}{requests}\PY{o}{.}\PY{n}{get}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{https://en.wikipedia.org/wiki/}\PY{l+s+s2}{\PYZdq{}}
+                              \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{List\PYZus{}of\PYZus{}countries\PYZus{}by\PYZus{}system\PYZus{}of\PYZus{}government}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{soup} \PY{o}{=} \PY{n}{BeautifulSoup}\PY{p}{(}\PY{n}{resp}\PY{o}{.}\PY{n}{content}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{html.parser}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}133}]:} \PY{n}{tables} \PY{o}{=} \PY{n}{soup}\PY{o}{.}\PY{n}{find\PYZus{}all}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{table}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{p}{\PYZob{}}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{class}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{wikitable}\PY{l+s+s2}{\PYZdq{}}\PY{p}{\PYZcb{}}\PY{p}{)}
+          \PY{n}{recognized\PYZus{}countries} \PY{o}{=} \PY{n}{tables}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}134}]:} \PY{n}{countries} \PY{o}{=} \PY{n}{recognized\PYZus{}countries}\PY{o}{.}\PY{n}{find\PYZus{}all}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{td}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{rows} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+          \PY{n}{i} \PY{o}{=} \PY{l+m+mi}{0}
+          \PY{k}{while} \PY{n}{i} \PY{o}{\PYZlt{}} \PY{n+nb}{len}\PY{p}{(}\PY{n}{countries}\PY{p}{)}\PY{p}{:}
+              \PY{n}{country} \PY{o}{=} \PY{n+nb}{str}\PY{p}{(}\PY{n}{countries}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{title=}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+              \PY{n}{start} \PY{o}{=} \PY{n}{country}\PY{o}{.}\PY{n}{find}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZgt{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)} \PY{o}{+} \PY{l+m+mi}{1}
+              \PY{n}{end} \PY{o}{=} \PY{n}{country}\PY{o}{.}\PY{n}{find}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZlt{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)} 
+              \PY{n}{country} \PY{o}{=} \PY{n}{country}\PY{p}{[}\PY{n}{start}\PY{p}{:}\PY{n}{end}\PY{p}{]}
+              \PY{n}{gov\PYZus{}type} \PY{o}{=} \PY{n+nb}{str}\PY{p}{(}\PY{n}{countries}\PY{p}{[}\PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZlt{}td\PYZgt{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{strip}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZlt{}/td\PYZgt{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+              \PY{n}{rows}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{\PYZob{}}
+                  \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Country Name}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{country}\PY{p}{,}
+                  \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Government Type}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{gov\PYZus{}type}
+              \PY{p}{\PYZcb{}}\PY{p}{)}
+              \PY{n}{i}\PY{o}{+}\PY{o}{=}\PY{l+m+mi}{4}
+          \PY{n}{gov\PYZus{}types} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{rows}\PY{p}{)}
+          \PY{n}{gov\PYZus{}types}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Government Type}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{=} \PY{n}{gov\PYZus{}types}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Government Type}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{map}\PY{p}{(}
+                          \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Republic}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Republic}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                          \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Constitutional}\PY{l+s+se}{\PYZbs{}xa0}\PY{l+s+s1}{monarchy}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Constitutional Monarchy}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                          \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Absolute monarchy}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Absolute Monarchy}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{)}
+          \PY{n}{gov\PYZus{}types}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}134}]:}   Country Name          Government Type
+          0  Afghanistan                 Republic
+          1      Albania                 Republic
+          2      Algeria                 Republic
+          3      Andorra  Constitutional Monarchy
+          4       Angola                 Republic
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}135}]:} \PY{n}{diff\PYZus{}par} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{set}\PY{p}{(}\PY{n+nb}{list}\PY{p}{(}\PY{n}{par\PYZus{}income\PYZus{}manag}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Country Name}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{)}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n+nb}{set}\PY{p}{(}
+                  \PY{n+nb}{list}\PY{p}{(}\PY{n}{gov\PYZus{}types}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Country Name}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{)}
+              \PY{p}{)}\PY{p}{)}
+          \PY{n}{diff\PYZus{}gov} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{set}\PY{p}{(}\PY{n+nb}{list}\PY{p}{(}\PY{n}{gov\PYZus{}types}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Country Name}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{)}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n+nb}{set}
+              \PY{p}{(}\PY{n+nb}{list}\PY{p}{(}\PY{n}{par\PYZus{}income\PYZus{}manag}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Country Name}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{)}
+              \PY{p}{)}\PY{p}{)}
+          \PY{n}{diff} \PY{o}{=} \PY{n}{get\PYZus{}diff\PYZus{}dict}\PY{p}{(}\PY{n}{diff\PYZus{}par}\PY{p}{,} \PY{n}{diff\PYZus{}gov}\PY{p}{)}
+          \PY{n}{diff}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}135}]:} \{"Cote d'Ivoire": "Côte d'Ivoire",
+           'St. Kitts and Nevis': 'Saint Kitts and Nevis',
+           'Sao Tome and Principe': 'São Tomé and Príncipe',
+           'Cabo Verde': 'Cape Verde',
+           'St. Lucia': 'Saint Lucia',
+           'St. Vincent and the Grenadines': 'Saint Vincent and the Grenadines',
+           'Venezuela, RB': 'Venezuela'\}
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}136}]:} \PY{n}{par\PYZus{}income\PYZus{}manag} \PY{o}{=} \PY{n}{par\PYZus{}income\PYZus{}manag}\PY{o}{.}\PY{n}{set\PYZus{}index} \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Country Name}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{par\PYZus{}income\PYZus{}manag} \PY{o}{=} \PY{n}{par\PYZus{}income\PYZus{}manag}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{index} \PY{o}{=} \PY{n}{diff}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}137}]:} \PY{n+nb}{set}\PY{p}{(}\PY{n+nb}{list}\PY{p}{(}\PY{n}{gov\PYZus{}types}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Country Name}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{)}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n+nb}{set}\PY{p}{(}
+              \PY{n+nb}{list}\PY{p}{(}\PY{n}{par\PYZus{}income\PYZus{}manag}\PY{o}{.}\PY{n}{index}\PY{o}{.}\PY{n}{values}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}137}]:} \{'Brunei',
+           "China, People's Republic of",
+           'Congo, Democratic Republic of the',
+           'Congo, Republic of the',
+           'East Timor',
+           'Egypt',
+           'Eswatini',
+           'Federated States of Micronesia',
+           'Iran',
+           'Korea, North',
+           'Korea, South',
+           'Kyrgyzstan',
+           'Laos',
+           'North Macedonia',
+           'Palestine',
+           'Russia',
+           'Slovakia',
+           'Syria',
+           'Vatican City',
+           'Yemen'\}
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}138}]:} \PY{c+c1}{\PYZsh{} fixing more country names manually}
+          \PY{n}{par\PYZus{}income\PYZus{}manag} \PY{o}{=} \PY{n}{par\PYZus{}income\PYZus{}manag}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{index} \PY{o}{=} \PY{p}{\PYZob{}}
+           \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{China}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{China, People}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{s Republic of}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+           \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Egypt, Arab Rep.}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Egypt}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+           \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Iran, Islamic Rep.}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Iran}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+           \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Korea, Dem. People’s Rep.}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Korea, North}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+           \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Kyrgyz Republic}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Kyrgyzstan}\PY{l+s+s1}{\PYZsq{}} \PY{p}{,}
+           \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Lao PDR}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Laos}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+           \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Micronesia, Fed. Sts.}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Federated States of Micronesia}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+           \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Russian Federation}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Russia}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+           \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Syrian Arab Republic}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Syria}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+           \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{West Bank and Gaza}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Palestine}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}139}]:} \PY{c+c1}{\PYZsh{} merge data sets}
+          \PY{n}{par\PYZus{}gov} \PY{o}{=} \PY{n}{par\PYZus{}income\PYZus{}manag}\PY{o}{.}\PY{n}{merge}\PY{p}{(}\PY{n}{gov\PYZus{}types}\PY{p}{,} \PY{n}{on} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Country Name}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{how} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{inner}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{p}{)}
+          \PY{n}{par\PYZus{}gov}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}139}]:}            Country Name Country Code\_x  1990\_P  1997\_P  1998\_P  1999\_P  \textbackslash{}
+          0           Afghanistan            AFG     3.7     NaN     NaN     NaN   
+          1                Angola            AGO    14.5     9.5    15.5    15.5   
+          2               Albania            ALB    28.8     NaN     NaN     5.2   
+          3               Andorra            AND     NaN     7.1     7.1     7.1   
+          4  United Arab Emirates            ARE     0.0     0.0     0.0     0.0   
+          
+             2000\_P  2001\_P  2002\_P  2003\_P           {\ldots}             2009\_M  2010\_M  \textbackslash{}
+          0     NaN     NaN     NaN     NaN           {\ldots}                NaN     NaN   
+          1    15.5    15.5    15.5    15.5           {\ldots}                NaN     NaN   
+          2     5.2     5.7     5.7     5.7           {\ldots}              22.47     NaN   
+          3     7.1    14.3    14.3    14.3           {\ldots}                NaN     NaN   
+          4     0.0     0.0     0.0     0.0           {\ldots}                NaN     NaN   
+          
+             2011\_M  2012\_M  2013\_M  2014\_M  2015\_M  2016\_M  latest\_value\_M  \textbackslash{}
+          0     NaN     NaN     NaN     NaN     NaN     NaN             NaN   
+          1     NaN     NaN     NaN     NaN     NaN     NaN             NaN   
+          2     NaN     NaN     NaN     NaN     NaN     NaN           22.47   
+          3     NaN     NaN     NaN     NaN     NaN     NaN             NaN   
+          4     NaN     NaN     NaN     NaN     NaN     NaN             NaN   
+          
+                     Government Type  
+          0                 Republic  
+          1                 Republic  
+          2                 Republic  
+          3  Constitutional Monarchy  
+          4        Absolute Monarchy  
+          
+          [5 rows x 47 columns]
+\end{Verbatim}
+            
+    This data set contained inforamtion about the religious groups of each
+country. For our interests, it was more benefitial to simply have the
+majority religion listed for each country, instead of having the percent
+of many different religions for each country. Thus, we dropped many
+unnecesary variables in the data set and created a column which only
+hold the majority religion in it.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}140}]:} \PY{n}{religion\PYZus{}df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZti{}/data301/share/Brooke\PYZus{}Michal/}\PY{l+s+s2}{\PYZdq{}}
+                                    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{rounded\PYZus{}percentage\PYZhy{}Table 1.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{religion\PYZus{}df}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}140}]:}    row\_number  level  Nation\_fk    Year                    Region  \textbackslash{}
+          0         1.0    3.0    10000.0  2010.0                     World   
+          1         2.0    2.0     1001.0  2010.0             North America   
+          2         3.0    2.0     1002.0  2010.0   Latin America-Caribbean   
+          3         4.0    2.0     1003.0  2010.0                    Europe   
+          4         5.0    2.0     1004.0  2010.0  Middle East-North Africa   
+          
+                    Country All Religions Buddhists Christians Folk Religions Hindus  \textbackslash{}
+          0   All Countries           100       7.1       31.4            5.9   15.0   
+          1   All Countries           100       1.1       77.4          < 1.0  < 1.0   
+          2   All Countries           100     < 1.0       90.0            1.7  < 1.0   
+          3   All Countries          ****     < 1.0       74.5          < 1.0  < 1.0   
+          4   All Countries           100     < 1.0        3.7          < 1.0  < 1.0   
+          
+              Jews Muslims Other Religions Unaffiliated  Unnamed: 15  
+          0  < 1.0    23.2           < 1.0         16.4          NaN  
+          1    1.8     1.0           < 1.0         17.1          NaN  
+          2  < 1.0   < 1.0           < 1.0          7.7          NaN  
+          3  < 1.0     5.9           < 1.0         18.8          NaN  
+          4    1.6    93.0           < 1.0        < 1.0          NaN  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}141}]:} \PY{n}{religion\PYZus{}df} \PY{o}{=} \PY{n}{religion\PYZus{}df}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{row\PYZus{}number}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{level}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Unnamed: 15}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+          \PY{n}{religion\PYZus{}df} \PY{o}{=} \PY{n}{religion\PYZus{}df}\PY{o}{.}\PY{n}{set\PYZus{}index}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Country}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{religion\PYZus{}df} \PY{o}{=} \PY{n}{religion\PYZus{}df}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZlt{} 1.0}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZgt{}99.0}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{100}\PY{p}{]}\PY{p}{)}
+          \PY{n}{cols} \PY{o}{=} \PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Buddhists}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Christians}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Folk Religions}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Hindus}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+                  \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Jews}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Muslims}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Other Religions}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Unaffiliated}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}
+          \PY{n}{religion\PYZus{}df}\PY{p}{[}\PY{n}{cols}\PY{p}{]} \PY{o}{=} \PY{n}{religion\PYZus{}df}\PY{p}{[}\PY{n}{cols}\PY{p}{]}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{n}{pd}\PY{o}{.}\PY{n}{to\PYZus{}numeric}\PY{p}{,} \PY{n}{errors}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{coerce}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{religion\PYZus{}df}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Religion}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n}{religion\PYZus{}df}\PY{p}{[}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Buddhists}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Christians}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+                                      \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Folk Religions}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Hindus}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Jews}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} 
+                                      \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Muslims}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Other Religions}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} 
+                                                  \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Unaffiliated}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{idxmax}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+          \PY{n}{religion\PYZus{}df} \PY{o}{=} \PY{n}{religion\PYZus{}df}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ All Countries}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}142}]:} \PY{n}{religion} \PY{o}{=} \PY{n}{religion\PYZus{}df}\PY{o}{.}\PY{n}{pivot}\PY{p}{(}\PY{n}{columns} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Year}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{values} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Religion}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{country\PYZus{}religion} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{)}
+          \PY{n}{country\PYZus{}religion} \PY{o}{=} \PY{n}{religion}\PY{p}{[}\PY{l+m+mf}{2010.0}\PY{p}{]}
+          \PY{n}{country\PYZus{}religions} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{country\PYZus{}religion}\PY{p}{)}
+          \PY{n}{country\PYZus{}religions} \PY{o}{=} \PY{n}{country\PYZus{}religions}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{p}{)}
+          \PY{n}{country\PYZus{}religions} \PY{o}{=} \PY{n}{country\PYZus{}religions}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{columns} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+m+mf}{2010.0}\PY{p}{:}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Religion}\PY{l+s+s2}{\PYZdq{}}\PY{p}{\PYZcb{}}\PY{p}{)}
+          \PY{n}{country\PYZus{}religions}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}142}]:}                   Religion
+          Country                   
+          Afghanistan        Muslims
+          Albania            Muslims
+          Algeria            Muslims
+          American Samoa  Christians
+          Andorra         Christians
+\end{Verbatim}
+            
+    The following data set contained demographic information about each
+country in the data set. We kept only the variables that we thought
+would be useful to us in our project.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}143}]:} \PY{n}{country\PYZus{}stats\PYZus{}df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZti{}/data301/share/Brooke\PYZus{}Michal/}\PY{l+s+s2}{\PYZdq{}}
+                                         \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{countries of the world.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{country\PYZus{}stats\PYZus{}df} \PY{o}{=} \PY{n}{country\PYZus{}stats\PYZus{}df}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Climate}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+                              \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Arable (}\PY{l+s+s2}{\PYZpc{}}\PY{l+s+s2}{)}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Crops (}\PY{l+s+s2}{\PYZpc{}}\PY{l+s+s2}{)}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Other (}\PY{l+s+s2}{\PYZpc{}}\PY{l+s+s2}{)}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+                              \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Coastline (coast/area ratio)}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} 
+                              \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Net migration}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Phones (per 1000)}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} 
+                              \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Agriculture}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Industry}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Service}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+                              \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Region}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+          \PY{n}{cs\PYZus{}idx} \PY{o}{=} \PY{n}{country\PYZus{}stats\PYZus{}df}\PY{o}{.}\PY{n}{Country}\PY{o}{.}\PY{n}{values}
+          \PY{n}{cs\PYZus{}idx} \PY{o}{=} \PY{p}{[}\PY{n}{c}\PY{p}{[}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{k}{for} \PY{n}{c} \PY{o+ow}{in} \PY{n}{cs\PYZus{}idx}\PY{p}{]}
+          \PY{n}{country\PYZus{}stats\PYZus{}df}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Country}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n}{cs\PYZus{}idx}
+          \PY{n}{country\PYZus{}stats\PYZus{}df} \PY{o}{=} \PY{n}{country\PYZus{}stats\PYZus{}df}\PY{o}{.}\PY{n}{set\PYZus{}index}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Country}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{c+c1}{\PYZsh{}population is less informative than popoulation density, so we dropped it}
+          \PY{n}{country\PYZus{}stats\PYZus{}df} \PY{o}{=} \PY{n}{country\PYZus{}stats\PYZus{}df}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Population}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} 
+                                      \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Area (sq. mi.)}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+          \PY{n}{country\PYZus{}stats\PYZus{}df}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Palestinian territories}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{p}{(}
+              \PY{n}{country\PYZus{}stats\PYZus{}df}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Gaza Strip}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{+} \PY{n}{country\PYZus{}stats\PYZus{}df}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{West Bank}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{)}
+          \PY{n}{country\PYZus{}stats\PYZus{}df} \PY{o}{=} \PY{n}{country\PYZus{}stats\PYZus{}df}\PY{o}{.}\PY{n}{drop}\PY{p}{(}
+              \PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Gaza Strip}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{West Bank}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{)}
+          \PY{n}{country\PYZus{}stats\PYZus{}df}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}143}]:}                 Pop. Density (per sq. mi.)  \textbackslash{}
+          Country                                      
+          Afghanistan                           48.0   
+          Albania                              124.6   
+          Algeria                               13.8   
+          American Samoa                       290.4   
+          Andorra                              152.1   
+          
+                          Infant mortality (per 1000 births)  GDP (\$ per capita)  \textbackslash{}
+          Country                                                                  
+          Afghanistan                                 163.07               700.0   
+          Albania                                      21.52              4500.0   
+          Algeria                                      31.00              6000.0   
+          American Samoa                                9.27              8000.0   
+          Andorra                                       4.05             19000.0   
+          
+                          Literacy (\%)  Birthrate  Deathrate  
+          Country                                             
+          Afghanistan             36.0      46.60      20.34  
+          Albania                 86.5      15.11       5.22  
+          Algeria                 70.0      17.14       4.61  
+          American Samoa          97.0      22.46       3.27  
+          Andorra                100.0       8.71       6.25  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}144}]:} \PY{c+c1}{\PYZsh{} merge the previous two data sets}
+          \PY{n}{diff\PYZus{}relig} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}
+              \PY{n+nb}{set}\PY{p}{(}\PY{n+nb}{list}\PY{p}{(}\PY{n}{country\PYZus{}religions}\PY{o}{.}\PY{n}{index}\PY{o}{.}\PY{n}{values}\PY{p}{)}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n+nb}{set}\PY{p}{(}
+                  \PY{n+nb}{list}\PY{p}{(}\PY{n}{country\PYZus{}stats\PYZus{}df}\PY{o}{.}\PY{n}{index}\PY{o}{.}\PY{n}{values}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+          \PY{n}{diff\PYZus{}stat} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}
+              \PY{n+nb}{set}\PY{p}{(}\PY{n+nb}{list}\PY{p}{(}\PY{n}{country\PYZus{}stats\PYZus{}df}\PY{o}{.}\PY{n}{index}\PY{o}{.}\PY{n}{values}\PY{p}{)}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n+nb}{set}\PY{p}{(}
+                  \PY{n+nb}{list}\PY{p}{(}\PY{n}{country\PYZus{}religions}\PY{o}{.}\PY{n}{index}\PY{o}{.}\PY{n}{values}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+          \PY{n}{diff} \PY{o}{=} \PY{n}{get\PYZus{}diff\PYZus{}dict}\PY{p}{(}\PY{n}{diff\PYZus{}stat}\PY{p}{,} \PY{n}{diff\PYZus{}relig}\PY{p}{)}
+          \PY{n}{diff} 
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}144}]:} \{'Turks \& Caicos Is': 'Turks and Caicos Islands',
+           'Antigua \& Barbuda': 'Antigua and Barbuda',
+           'Trinidad \& Tobago': 'Trinidad and Tobago',
+           'Saint Helena': 'St. Helena',
+           'Bahamas. The': 'Bahamas',
+           'Saint Kitts \& Nevis': 'St. Kitts and Nevis',
+           'Virgin Islands': 'British Virgin Islands',
+           'Saint Vincent and the Grenadines': 'St. Vincent and the Grenadines',
+           'British Virgin Is.': 'British Virgin Islands',
+           'N. Mariana Islands': 'U.S. Virgin Islands',
+           'Bosnia \& Herzegovina': 'Bosnia-Herzegovina',
+           'Sao Tome \& Principe': 'Sao Tome and Principe',
+           'St Pierre \& Miquelon': 'St. Pierre and Miquelon',
+           'Central African Rep.': 'Central African Republic',
+           'Saint Lucia': 'St. Lucia',
+           'Faroe Islands': 'Faeroe Islands',
+           'Gambia. The': 'Gambia'\}
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}145}]:} \PY{k}{del} \PY{n}{diff}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{N. Mariana Islands}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+          \PY{k}{del} \PY{n}{diff}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Faroe Islands}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}146}]:} \PY{n}{country\PYZus{}stats\PYZus{}df} \PY{o}{=} \PY{n}{country\PYZus{}stats\PYZus{}df}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{index}\PY{o}{=}\PY{n}{diff}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}147}]:} \PY{c+c1}{\PYZsh{} more manual corrections}
+          \PY{n}{country\PYZus{}stats\PYZus{}df} \PY{o}{=} \PY{n}{country\PYZus{}stats\PYZus{}df}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{index}\PY{o}{=}\PY{p}{\PYZob{}}
+           \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Congo, Repub. of the}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Republic of the Congo}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+           \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Faroe Islands}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Faeroe Islands}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+           \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Congo, Dem. Rep.}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Democratic Republic of the Congo}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+           \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Korea, North}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{North Korea}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+           \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Macedonia}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Republic of Macedonia}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+           \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Burma}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Burma (Myanmar)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+           \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Korea, South}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{South Korea}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}148}]:} \PY{n}{stats\PYZus{}religion} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{merge}\PY{p}{(}\PY{n}{country\PYZus{}religions}\PY{p}{,} 
+                                    \PY{n}{country\PYZus{}stats\PYZus{}df}\PY{p}{,} \PY{n}{on} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Country}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+                                    \PY{n}{how} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{inner}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} 
+                                    \PY{n}{suffixes}\PY{o}{=}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZus{}y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+          \PY{n}{stats\PYZus{}religion}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}148}]:}                   Religion  Pop. Density (per sq. mi.)  \textbackslash{}
+          Country                                                  
+          Afghanistan        Muslims                        48.0   
+          Albania            Muslims                       124.6   
+          Algeria            Muslims                        13.8   
+          American Samoa  Christians                       290.4   
+          Andorra         Christians                       152.1   
+          
+                          Infant mortality (per 1000 births)  GDP (\$ per capita)  \textbackslash{}
+          Country                                                                  
+          Afghanistan                                 163.07               700.0   
+          Albania                                      21.52              4500.0   
+          Algeria                                      31.00              6000.0   
+          American Samoa                                9.27              8000.0   
+          Andorra                                       4.05             19000.0   
+          
+                          Literacy (\%)  Birthrate  Deathrate  
+          Country                                             
+          Afghanistan             36.0      46.60      20.34  
+          Albania                 86.5      15.11       5.22  
+          Algeria                 70.0      17.14       4.61  
+          American Samoa          97.0      22.46       3.27  
+          Andorra                100.0       8.71       6.25  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}149}]:} \PY{c+c1}{\PYZsh{} merge final two data sets}
+          \PY{n}{diff\PYZus{}relig} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}
+              \PY{n+nb}{set}\PY{p}{(}\PY{n+nb}{list}\PY{p}{(}\PY{n}{stats\PYZus{}religion}\PY{o}{.}\PY{n}{index}\PY{o}{.}\PY{n}{values}\PY{p}{)}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n+nb}{set}\PY{p}{(}
+                  \PY{n+nb}{list}\PY{p}{(}\PY{n}{par\PYZus{}gov}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Country Name}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+          \PY{n}{diff\PYZus{}par} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}
+              \PY{n+nb}{set}\PY{p}{(}\PY{n+nb}{list}\PY{p}{(}\PY{n}{par\PYZus{}gov}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Country Name}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{)}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n+nb}{set}\PY{p}{(}
+                  \PY{n+nb}{list}\PY{p}{(}\PY{n}{stats\PYZus{}religion}\PY{o}{.}\PY{n}{index}\PY{o}{.}\PY{n}{values}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+          \PY{n}{diff} \PY{o}{=} \PY{n}{get\PYZus{}diff\PYZus{}dict}\PY{p}{(}\PY{n}{diff\PYZus{}relig}\PY{p}{,} \PY{n}{diff\PYZus{}par}\PY{p}{)}
+          \PY{n}{diff}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}149}]:} \{'Gambia': 'Gambia, The',
+           'St. Kitts and Nevis': 'Saint Kitts and Nevis',
+           'Bahamas': 'Bahamas, The',
+           'Sao Tome and Principe': 'São Tomé and Príncipe',
+           'St. Lucia': 'Saint Lucia',
+           'Bosnia-Herzegovina': 'Bosnia and Herzegovina',
+           'St. Vincent and the Grenadines': 'Saint Vincent and the Grenadines'\}
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}150}]:} \PY{n}{stats\PYZus{}religion} \PY{o}{=} \PY{n}{stats\PYZus{}religion}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{index} \PY{o}{=} \PY{n}{diff}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}151}]:} \PY{n+nb}{set}\PY{p}{(}\PY{n+nb}{list}\PY{p}{(}\PY{n}{par\PYZus{}gov}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Country Name}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{)}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n+nb}{set}\PY{p}{(}
+              \PY{n+nb}{list}\PY{p}{(}\PY{n}{stats\PYZus{}religion}\PY{o}{.}\PY{n}{index}\PY{o}{.}\PY{n}{values}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}151}]:} \{"China, People's Republic of",
+           "Côte d'Ivoire",
+           'Federated States of Micronesia',
+           'Korea, North',
+           'Montenegro',
+           'Myanmar',
+           'Palestine',
+           'South Sudan'\}
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}152}]:} \PY{c+c1}{\PYZsh{}manual corrections}
+          \PY{n}{stats\PYZus{}religion} \PY{o}{=} \PY{n}{stats\PYZus{}religion}\PY{o}{.}\PY{n}{rename}\PY{p}{(}
+              \PY{n}{index}\PY{o}{=}\PY{p}{\PYZob{}}
+                  \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Micronesia, Fed. St.}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Federated States of Micronesia}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                  \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{China}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{China, People}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{s Republic of}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+                  \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{North Korea}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Korea, North}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                  \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{South Korea}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Korea, South}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                  \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Palestinian territories}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Palestine}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                  \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Burma (Myanmar)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Myanmar}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}153}]:} \PY{n}{par\PYZus{}gov} \PY{o}{=} \PY{n}{par\PYZus{}gov}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{columns} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Country Name}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Country}\PY{l+s+s2}{\PYZdq{}}\PY{p}{\PYZcb{}}\PY{p}{)}
+          \PY{n}{par\PYZus{}gov}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}153}]:}                 Country Country Code\_x  1990\_P  1997\_P  1998\_P  1999\_P  \textbackslash{}
+          0           Afghanistan            AFG     3.7     NaN     NaN     NaN   
+          1                Angola            AGO    14.5     9.5    15.5    15.5   
+          2               Albania            ALB    28.8     NaN     NaN     5.2   
+          3               Andorra            AND     NaN     7.1     7.1     7.1   
+          4  United Arab Emirates            ARE     0.0     0.0     0.0     0.0   
+          
+             2000\_P  2001\_P  2002\_P  2003\_P           {\ldots}             2009\_M  2010\_M  \textbackslash{}
+          0     NaN     NaN     NaN     NaN           {\ldots}                NaN     NaN   
+          1    15.5    15.5    15.5    15.5           {\ldots}                NaN     NaN   
+          2     5.2     5.7     5.7     5.7           {\ldots}              22.47     NaN   
+          3     7.1    14.3    14.3    14.3           {\ldots}                NaN     NaN   
+          4     0.0     0.0     0.0     0.0           {\ldots}                NaN     NaN   
+          
+             2011\_M  2012\_M  2013\_M  2014\_M  2015\_M  2016\_M  latest\_value\_M  \textbackslash{}
+          0     NaN     NaN     NaN     NaN     NaN     NaN             NaN   
+          1     NaN     NaN     NaN     NaN     NaN     NaN             NaN   
+          2     NaN     NaN     NaN     NaN     NaN     NaN           22.47   
+          3     NaN     NaN     NaN     NaN     NaN     NaN             NaN   
+          4     NaN     NaN     NaN     NaN     NaN     NaN             NaN   
+          
+                     Government Type  
+          0                 Republic  
+          1                 Republic  
+          2                 Republic  
+          3  Constitutional Monarchy  
+          4        Absolute Monarchy  
+          
+          [5 rows x 47 columns]
+\end{Verbatim}
+            
+    Our final data frame includes proportion of women in national
+parliments, proportion of women in senior and middle management
+positions, income groups of each country, national religion and
+government types, and demographic information about the countries.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}154}]:} \PY{n}{final} \PY{o}{=} \PY{n}{par\PYZus{}gov}\PY{o}{.}\PY{n}{merge}\PY{p}{(}\PY{n}{stats\PYZus{}religion}\PY{p}{,} \PY{n}{on} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Country}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{how} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{inner}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{final} \PY{o}{=} \PY{n}{final}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{columns} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Country Code\PYZus{}x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Country Code}\PY{l+s+s2}{\PYZdq{}}\PY{p}{\PYZcb{}}
+                              \PY{p}{)}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Country Code\PYZus{}y}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}
+          \PY{n}{final}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}154}]:}                 Country Country Code  1990\_P  1997\_P  1998\_P  1999\_P  2000\_P  \textbackslash{}
+          0           Afghanistan          AFG     3.7     NaN     NaN     NaN     NaN   
+          1                Angola          AGO    14.5     9.5    15.5    15.5    15.5   
+          2               Albania          ALB    28.8     NaN     NaN     5.2     5.2   
+          3               Andorra          AND     NaN     7.1     7.1     7.1     7.1   
+          4  United Arab Emirates          ARE     0.0     0.0     0.0     0.0     0.0   
+          
+             2001\_P  2002\_P  2003\_P    {\ldots}      2016\_M  latest\_value\_M  \textbackslash{}
+          0     NaN     NaN     NaN    {\ldots}         NaN             NaN   
+          1    15.5    15.5    15.5    {\ldots}         NaN             NaN   
+          2     5.7     5.7     5.7    {\ldots}         NaN           22.47   
+          3    14.3    14.3    14.3    {\ldots}         NaN             NaN   
+          4     0.0     0.0     0.0    {\ldots}         NaN             NaN   
+          
+                     Government Type    Religion  Pop. Density (per sq. mi.)  \textbackslash{}
+          0                 Republic     Muslims                        48.0   
+          1                 Republic  Christians                         9.7   
+          2                 Republic     Muslims                       124.6   
+          3  Constitutional Monarchy  Christians                       152.1   
+          4        Absolute Monarchy     Muslims                        31.4   
+          
+             Infant mortality (per 1000 births)  GDP (\$ per capita)  Literacy (\%)  \textbackslash{}
+          0                              163.07               700.0          36.0   
+          1                              191.19              1900.0          42.0   
+          2                               21.52              4500.0          86.5   
+          3                                4.05             19000.0         100.0   
+          4                               14.51             23200.0          77.9   
+          
+             Birthrate  Deathrate  
+          0      46.60      20.34  
+          1      45.11      24.20  
+          2      15.11       5.22  
+          3       8.71       6.25  
+          4      18.96       4.40  
+          
+          [5 rows x 53 columns]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}155}]:} \PY{n}{final}\PY{o}{.}\PY{n}{to\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZti{}/data301/share/Brooke\PYZus{}Michal/final\PYZus{}data.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{index} \PY{o}{=} \PY{k+kc}{False}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}156}]:} \PY{n}{final}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}156}]:}                 Country Country Code  1990\_P  1997\_P  1998\_P  1999\_P  2000\_P  \textbackslash{}
+          0           Afghanistan          AFG     3.7     NaN     NaN     NaN     NaN   
+          1                Angola          AGO    14.5     9.5    15.5    15.5    15.5   
+          2               Albania          ALB    28.8     NaN     NaN     5.2     5.2   
+          3               Andorra          AND     NaN     7.1     7.1     7.1     7.1   
+          4  United Arab Emirates          ARE     0.0     0.0     0.0     0.0     0.0   
+          
+             2001\_P  2002\_P  2003\_P    {\ldots}      2016\_M  latest\_value\_M  \textbackslash{}
+          0     NaN     NaN     NaN    {\ldots}         NaN             NaN   
+          1    15.5    15.5    15.5    {\ldots}         NaN             NaN   
+          2     5.7     5.7     5.7    {\ldots}         NaN           22.47   
+          3    14.3    14.3    14.3    {\ldots}         NaN             NaN   
+          4     0.0     0.0     0.0    {\ldots}         NaN             NaN   
+          
+                     Government Type    Religion  Pop. Density (per sq. mi.)  \textbackslash{}
+          0                 Republic     Muslims                        48.0   
+          1                 Republic  Christians                         9.7   
+          2                 Republic     Muslims                       124.6   
+          3  Constitutional Monarchy  Christians                       152.1   
+          4        Absolute Monarchy     Muslims                        31.4   
+          
+             Infant mortality (per 1000 births)  GDP (\$ per capita)  Literacy (\%)  \textbackslash{}
+          0                              163.07               700.0          36.0   
+          1                              191.19              1900.0          42.0   
+          2                               21.52              4500.0          86.5   
+          3                                4.05             19000.0         100.0   
+          4                               14.51             23200.0          77.9   
+          
+             Birthrate  Deathrate  
+          0      46.60      20.34  
+          1      45.11      24.20  
+          2      15.11       5.22  
+          3       8.71       6.25  
+          4      18.96       4.40  
+          
+          [5 rows x 53 columns]
+\end{Verbatim}
+            
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
